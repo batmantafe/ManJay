@@ -14,7 +14,9 @@ public class CustomiseSet : MonoBehaviour
 
     [Header("Stats")]
     public GameObject[] healthBars;
-    public int healthStat, healthMinStat, manaStat, staminaStat, maxStat, skillPoints;
+    public GameObject[] manaBars;
+    public GameObject[] staminaBars;
+    public int healthStat, healthMinStat, manaStat, manaMinStat, staminaStat, staminaMinStat, maxStat, skillPoints, skillPointsMax;
 
     [Header("Classes")]
     public Dropdown classDropDown;
@@ -35,7 +37,8 @@ public class CustomiseSet : MonoBehaviour
         manaStat = 1;
         staminaStat = 1;
         maxStat = 6;
-        skillPoints = 2;
+        skillPointsMax = 5;
+        skillPoints = skillPointsMax;
 
         classDropDown.value = 0; // set Default class before Load
 
@@ -191,7 +194,7 @@ public class CustomiseSet : MonoBehaviour
             return;
         }
 
-        if ((healthStat >= maxStat && skillPoints > 0) || (maxStat - healthStat > 0 && skillPoints == 0))
+        if ((healthStat >= maxStat && skillPoints > 0) || (maxStat - healthStat >= 0 && skillPoints == 0))
         {
             skillPoints = skillPoints + (healthStat - healthMinStat); // give the skillPoints back
 
@@ -234,34 +237,110 @@ public class CustomiseSet : MonoBehaviour
 
     public void ManaButton()
     {
-        if (manaStat < maxStat)
+        if (manaStat < maxStat && skillPoints > 0)
         {
-            manaStat = manaStat + 1;
-            Debug.Log("manaStat = " + manaStat);
+            manaStat = manaStat + 1; // increment healthStat
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
+
+            manaBars[manaStat - 1].SetActive(true); // activate appropriate healthbar
+
             return;
         }
 
-        if (manaStat >= maxStat)
+        if ((manaStat >= maxStat && skillPoints > 0) || (maxStat - manaStat >= 0 && skillPoints == 0))
         {
-            manaStat = 1;
+            skillPoints = skillPoints + (manaStat - manaMinStat); // give the skillPoints back
+
+            manaStat = manaMinStat; // reset healthStat if trying to go past max
             Debug.Log("manaStat = " + manaStat);
+
+            switch (manaMinStat)
+            {
+                case 1:
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(false);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(true);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+                    break;
+            }
+
             return;
         }
     }
 
     public void StaminaButton()
     {
-        if (staminaStat < maxStat)
+        if (staminaStat < maxStat && skillPoints > 0)
         {
-            staminaStat = staminaStat + 1;
-            Debug.Log("staminaStat = " + staminaStat);
+            staminaStat = staminaStat + 1; // increment healthStat
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
+
+            staminaBars[staminaStat - 1].SetActive(true); // activate appropriate healthbar
+
             return;
         }
 
-        if (staminaStat >= maxStat)
+        if ((staminaStat >= maxStat && skillPoints > 0) || (maxStat - staminaStat >= 0 && skillPoints == 0))
         {
-            staminaStat = 1;
+            skillPoints = skillPoints + (staminaStat - staminaMinStat); // give the skillPoints back
+
+            staminaStat = staminaMinStat; // reset healthStat if trying to go past max
             Debug.Log("staminaStat = " + staminaStat);
+
+            switch (staminaMinStat)
+            {
+                case 1:
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(false);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(true);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+                    break;
+            }
+
             return;
         }
     }
@@ -271,6 +350,8 @@ public class CustomiseSet : MonoBehaviour
         switch (classDropDown.value) // for classDropDown.value
         {
             case 0: // if classDropDown.value == 0
+                skillPoints = skillPointsMax; // reset skillPoints when choosing new Class
+
                 healthStat = 3;
                 healthMinStat = 3;
 
@@ -280,36 +361,32 @@ public class CustomiseSet : MonoBehaviour
                 healthBars[3].SetActive(false);
                 healthBars[4].SetActive(false);
                 healthBars[5].SetActive(false);
+
+                manaStat = 2;
+                manaMinStat = 2;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(true);
+                manaBars[2].SetActive(false);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 1;
+                staminaMinStat = 1;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(false);
+                staminaBars[2].SetActive(false);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
 
                 break;
 
             case 1:
-                healthStat = 2;
-                healthMinStat = 2;
+                skillPoints = skillPointsMax;
 
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(true);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                break;
-
-            case 2:
-                healthStat = 1;
-                healthMinStat = 1;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(false);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                break;
-
-            case 3:
                 healthStat = 3;
                 healthMinStat = 3;
 
@@ -320,9 +397,31 @@ public class CustomiseSet : MonoBehaviour
                 healthBars[4].SetActive(false);
                 healthBars[5].SetActive(false);
 
+                manaStat = 1;
+                manaMinStat = 1;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(false);
+                manaBars[2].SetActive(false);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 2;
+                staminaMinStat = 2;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(true);
+                staminaBars[2].SetActive(false);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
+
                 break;
 
-            case 4:
+            case 2:
+                skillPoints = skillPointsMax;
+
                 healthStat = 2;
                 healthMinStat = 2;
 
@@ -333,9 +432,66 @@ public class CustomiseSet : MonoBehaviour
                 healthBars[4].SetActive(false);
                 healthBars[5].SetActive(false);
 
+                manaStat = 1;
+                manaMinStat = 1;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(false);
+                manaBars[2].SetActive(false);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 3;
+                staminaMinStat = 3;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(true);
+                staminaBars[2].SetActive(true);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
+
                 break;
 
-            case 5:
+            case 3:
+                skillPoints = skillPointsMax;
+
+                healthStat = 2;
+                healthMinStat = 2;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(true);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                manaStat = 3;
+                manaMinStat = 3;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(true);
+                manaBars[2].SetActive(true);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 1;
+                staminaMinStat = 1;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(false);
+                staminaBars[2].SetActive(false);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
+
+                break;
+
+            case 4:
+                skillPoints = skillPointsMax;
+
                 healthStat = 1;
                 healthMinStat = 1;
 
@@ -345,6 +501,61 @@ public class CustomiseSet : MonoBehaviour
                 healthBars[3].SetActive(false);
                 healthBars[4].SetActive(false);
                 healthBars[5].SetActive(false);
+
+                manaStat = 3;
+                manaMinStat = 3;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(true);
+                manaBars[2].SetActive(true);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 2;
+                staminaMinStat = 2;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(true);
+                staminaBars[2].SetActive(false);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
+
+                break;
+
+            case 5:
+                skillPoints = skillPointsMax;
+
+                healthStat = 1;
+                healthMinStat = 1;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(false);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                manaStat = 2;
+                manaMinStat = 2;
+
+                manaBars[0].SetActive(true);
+                manaBars[1].SetActive(true);
+                manaBars[2].SetActive(false);
+                manaBars[3].SetActive(false);
+                manaBars[4].SetActive(false);
+                manaBars[5].SetActive(false);
+
+                staminaStat = 3;
+                staminaMinStat = 3;
+
+                staminaBars[0].SetActive(true);
+                staminaBars[1].SetActive(true);
+                staminaBars[2].SetActive(true);
+                staminaBars[3].SetActive(false);
+                staminaBars[4].SetActive(false);
+                staminaBars[5].SetActive(false);
 
                 break;
         }   
