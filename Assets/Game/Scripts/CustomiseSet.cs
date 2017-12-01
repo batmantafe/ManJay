@@ -1,16 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
 public class CustomiseSet : MonoBehaviour
 {
+    [Header("Colours")]
     public Material[] mats;
-
     public GameObject head, body, ear1, ear2, eye, beard, hair;
-
     public int headMatsIndex, bodyMatsIndex, earMatsIndex, eyeMatsIndex, beardMatsIndex, hairMatsIndex, matsMaxIndex;
+
+    [Header("Stats")]
+    public GameObject[] healthBars;
+    public int healthStat, healthMinStat, manaStat, staminaStat, maxStat;
+
+    [Header("Classes")]
+    public Dropdown classDropDown;
 
     // Use this for initialization
     void Start()
@@ -22,9 +29,18 @@ public class CustomiseSet : MonoBehaviour
         beardMatsIndex = 0;
         hairMatsIndex = 0;
 
-        Load();
-
         matsMaxIndex = mats.Length - 1;
+
+        healthStat = 1;
+        manaStat = 1;
+        staminaStat = 1;
+        maxStat = 6;
+
+        classDropDown.value = 0; // set Default class before Load
+
+        ClassCheck();
+
+        Load();
     }
 
     // Update is called once per frame
@@ -33,6 +49,7 @@ public class CustomiseSet : MonoBehaviour
 
     }
 
+    #region Colours
     public void HeadColourButton()
     {
         if (headMatsIndex < matsMaxIndex)
@@ -154,6 +171,178 @@ public class CustomiseSet : MonoBehaviour
         beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
         hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
     }
+    #endregion
+
+    #region Stats
+    public void HealthButton()
+    {
+        if (healthStat < maxStat)
+        {
+            healthStat = healthStat + 1; // increment healthStat
+            Debug.Log("healthStat = " + healthStat);
+
+            healthBars[healthStat - 1].SetActive(true); // activate appropriate healthbar
+
+            return;
+        }
+
+        if (healthStat >= maxStat)
+        {
+            healthStat = healthMinStat; // reset healthStat if trying to go past max
+            Debug.Log("healthStat = " + healthStat);
+
+            switch (healthMinStat)
+            {
+                case 1:
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(false);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(true);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+                    break;
+            }
+
+            return;
+        }
+    }
+
+    public void ManaButton()
+    {
+        if (manaStat < maxStat)
+        {
+            manaStat = manaStat + 1;
+            Debug.Log("manaStat = " + manaStat);
+            return;
+        }
+
+        if (manaStat >= maxStat)
+        {
+            manaStat = 1;
+            Debug.Log("manaStat = " + manaStat);
+            return;
+        }
+    }
+
+    public void StaminaButton()
+    {
+        if (staminaStat < maxStat)
+        {
+            staminaStat = staminaStat + 1;
+            Debug.Log("staminaStat = " + staminaStat);
+            return;
+        }
+
+        if (staminaStat >= maxStat)
+        {
+            staminaStat = 1;
+            Debug.Log("staminaStat = " + staminaStat);
+            return;
+        }
+    }
+
+    public void ClassCheck()
+    {
+        switch (classDropDown.value) // for classDropDown.value
+        {
+            case 0: // if classDropDown.value == 0
+                healthStat = 3;
+                healthMinStat = 3;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(true);
+                healthBars[2].SetActive(true);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+
+            case 1:
+                healthStat = 2;
+                healthMinStat = 2;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(true);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+
+            case 2:
+                healthStat = 1;
+                healthMinStat = 1;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(false);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+
+            case 3:
+                healthStat = 3;
+                healthMinStat = 3;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(true);
+                healthBars[2].SetActive(true);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+
+            case 4:
+                healthStat = 2;
+                healthMinStat = 2;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(true);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+
+            case 5:
+                healthStat = 1;
+                healthMinStat = 1;
+
+                healthBars[0].SetActive(true);
+                healthBars[1].SetActive(false);
+                healthBars[2].SetActive(false);
+                healthBars[3].SetActive(false);
+                healthBars[4].SetActive(false);
+                healthBars[5].SetActive(false);
+
+                break;
+        }   
+    }
+    #endregion
 
     public void SaveAndPlayButton()
     {
