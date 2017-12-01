@@ -16,7 +16,16 @@ public class CustomiseSet : MonoBehaviour
     public GameObject[] healthBars;
     public GameObject[] manaBars;
     public GameObject[] staminaBars;
-    public int healthStat, healthMinStat, manaStat, manaMinStat, staminaStat, staminaMinStat, maxStat, skillPoints, skillPointsMax;
+    public GameObject[] speedBars;
+    public GameObject[] sneakyBars;
+    public GameObject[] shootBars;
+    public int healthStat, healthMinStat,
+        manaStat, manaMinStat,
+        staminaStat, staminaMinStat,
+        speedStat, speedMinStat,
+        sneakyStat, sneakyMinStat,
+        shootStat, shootMinStat,
+        maxStat, skillPoints, skillPointsMax;
 
     [Header("Classes")]
     public Dropdown classDropDown;
@@ -37,7 +46,7 @@ public class CustomiseSet : MonoBehaviour
         manaStat = 1;
         staminaStat = 1;
         maxStat = 6;
-        skillPointsMax = 5;
+        skillPointsMax = 10;
         skillPoints = skillPointsMax;
 
         classDropDown.value = 0; // set Default class before Load
@@ -345,6 +354,171 @@ public class CustomiseSet : MonoBehaviour
         }
     }
 
+    public void SpeedButton()
+    {
+        if (speedStat < maxStat && skillPoints > 0)
+        {
+            speedStat = speedStat + 1; // increment healthStat
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
+
+            speedBars[speedStat - 1].SetActive(true); // activate appropriate healthbar
+
+            return;
+        }
+
+        if ((speedStat >= maxStat && skillPoints > 0) || (maxStat - speedStat >= 0 && skillPoints == 0))
+        {
+            skillPoints = skillPoints + (speedStat - speedMinStat); // give the skillPoints back
+
+            speedStat = speedMinStat; // reset healthStat if trying to go past max
+            Debug.Log("speedStat = " + speedStat);
+
+            switch (speedMinStat)
+            {
+                case 1:
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(false);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(true);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+                    break;
+            }
+
+            return;
+        }
+    }
+
+    public void SneakyButton()
+    {
+        if (sneakyStat < maxStat && skillPoints > 0)
+        {
+            sneakyStat = sneakyStat + 1; // increment healthStat
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
+
+            sneakyBars[sneakyStat - 1].SetActive(true); // activate appropriate healthbar
+
+            return;
+        }
+
+        if ((sneakyStat >= maxStat && skillPoints > 0) || (maxStat - sneakyStat >= 0 && skillPoints == 0))
+        {
+            skillPoints = skillPoints + (sneakyStat - sneakyMinStat); // give the skillPoints back
+
+            sneakyStat = sneakyMinStat; // reset healthStat if trying to go past max
+            Debug.Log("sneakyStat = " + sneakyStat);
+
+            switch (sneakyMinStat)
+            {
+                case 1:
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(false);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(true);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+                    break;
+            }
+
+            return;
+        }
+    }
+
+    public void ShootButton()
+    {
+        if (shootStat < maxStat && skillPoints > 0)
+        {
+            shootStat = shootStat + 1; // increment healthStat
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
+
+            shootBars[shootStat - 1].SetActive(true); // activate appropriate healthbar
+
+            return;
+        }
+
+        if ((shootStat >= maxStat && skillPoints > 0) || (maxStat - shootStat >= 0 && skillPoints == 0))
+        {
+            skillPoints = skillPoints + (shootStat - shootMinStat); // give the skillPoints back
+
+            shootStat = shootMinStat; // reset healthStat if trying to go past max
+            Debug.Log("shootStat = " + shootStat);
+
+            switch (shootMinStat)
+            {
+                case 1:
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(false);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+                    break;
+
+                case 2:
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+                    break;
+
+                case 3:
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(true);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+                    break;
+            }
+
+            return;
+        }
+    }
+
     public void ClassCheck()
     {
         switch (classDropDown.value) // for classDropDown.value
@@ -382,6 +556,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
 
+                speedStat = 3;
+                speedMinStat = 3;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(true);
+                speedBars[2].SetActive(true);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 2;
+                sneakyMinStat = 2;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(true);
+                sneakyBars[2].SetActive(false);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 1;
+                shootMinStat = 1;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(false);
+                shootBars[2].SetActive(false);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
+
                 break;
 
             case 1:
@@ -416,6 +620,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[3].SetActive(false);
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
+
+                speedStat = 3;
+                speedMinStat = 3;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(true);
+                speedBars[2].SetActive(true);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 1;
+                sneakyMinStat = 1;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(false);
+                sneakyBars[2].SetActive(false);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 2;
+                shootMinStat = 2;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(true);
+                shootBars[2].SetActive(false);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
 
                 break;
 
@@ -452,6 +686,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
 
+                speedStat = 2;
+                speedMinStat = 2;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(true);
+                speedBars[2].SetActive(false);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 1;
+                sneakyMinStat = 1;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(false);
+                sneakyBars[2].SetActive(false);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 3;
+                shootMinStat = 3;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(true);
+                shootBars[2].SetActive(true);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
+
                 break;
 
             case 3:
@@ -486,6 +750,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[3].SetActive(false);
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
+
+                speedStat = 2;
+                speedMinStat = 2;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(true);
+                speedBars[2].SetActive(false);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 3;
+                sneakyMinStat = 3;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(true);
+                sneakyBars[2].SetActive(true);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 1;
+                shootMinStat = 1;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(false);
+                shootBars[2].SetActive(false);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
 
                 break;
 
@@ -522,6 +816,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
 
+                speedStat = 1;
+                speedMinStat = 1;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(false);
+                speedBars[2].SetActive(false);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 3;
+                sneakyMinStat = 3;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(true);
+                sneakyBars[2].SetActive(true);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 2;
+                shootMinStat = 2;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(true);
+                shootBars[2].SetActive(false);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
+
                 break;
 
             case 5:
@@ -556,6 +880,36 @@ public class CustomiseSet : MonoBehaviour
                 staminaBars[3].SetActive(false);
                 staminaBars[4].SetActive(false);
                 staminaBars[5].SetActive(false);
+
+                speedStat = 1;
+                speedMinStat = 1;
+
+                speedBars[0].SetActive(true);
+                speedBars[1].SetActive(false);
+                speedBars[2].SetActive(false);
+                speedBars[3].SetActive(false);
+                speedBars[4].SetActive(false);
+                speedBars[5].SetActive(false);
+
+                sneakyStat = 2;
+                sneakyMinStat = 2;
+
+                sneakyBars[0].SetActive(true);
+                sneakyBars[1].SetActive(true);
+                sneakyBars[2].SetActive(false);
+                sneakyBars[3].SetActive(false);
+                sneakyBars[4].SetActive(false);
+                sneakyBars[5].SetActive(false);
+
+                shootStat = 3;
+                shootMinStat = 3;
+
+                shootBars[0].SetActive(true);
+                shootBars[1].SetActive(true);
+                shootBars[2].SetActive(true);
+                shootBars[3].SetActive(false);
+                shootBars[4].SetActive(false);
+                shootBars[5].SetActive(false);
 
                 break;
         }   
