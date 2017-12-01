@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CustomiseSet : MonoBehaviour
 {
+    public string currentScene;
+
     [Header("Colours")]
     public Material[] mats;
     public GameObject head, body, ear1, ear2, eye, beard, hair;
@@ -34,6 +36,8 @@ public class CustomiseSet : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene().name;
+
         headMatsIndex = 0; // Sets Defaults before Load
         bodyMatsIndex = 0;
         earMatsIndex = 0;
@@ -69,7 +73,28 @@ public class CustomiseSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Shortcuts();
+    }
+
+    void Shortcuts()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            if (SceneManager.GetActiveScene().name == "Customise")
+            {
+                Application.Quit();
+            }
+
+            if (SceneManager.GetActiveScene().name == "Game")
+            {
+                SceneManager.LoadScene("Customise");
+            }
+        }
+
+        if (Input.GetKey(KeyCode.F1))
+        {
+            SceneManager.LoadScene(currentScene, LoadSceneMode.Single); // LoadSceneMode.single loads a Single Scene (not overlapping an existing scene)
+        }
     }
 
     #region Colours

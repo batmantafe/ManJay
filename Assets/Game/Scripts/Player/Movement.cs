@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float speed = 6.0f;
     public float gravity = 20.0f;
+
     #endregion
 
     #region Start
@@ -38,6 +39,8 @@ public class Movement : MonoBehaviour
     {
         //charc is on this game object we need to get the character controller that is attached to it
         charC = this.GetComponent<CharacterController>();
+
+        
     }
     #endregion
 
@@ -74,22 +77,11 @@ public class Movement : MonoBehaviour
         //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
         charC.Move(moveDir * Time.deltaTime);
 
-        Shortcuts();
+        
     }
     #endregion
 
-    void Shortcuts()
-    {
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
-        if (Input.GetKey(KeyCode.F1))
-        {
-            SceneManager.LoadScene("Game");
-        }
-    }
+    
 }
 
 
