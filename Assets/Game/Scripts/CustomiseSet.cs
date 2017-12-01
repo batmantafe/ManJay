@@ -50,13 +50,20 @@ public class CustomiseSet : MonoBehaviour
         skillPointsMax = 10;
         skillPoints = skillPointsMax;
 
-        classDropDown.value = 0; // set Default class before Load
-
+        if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
+        {
+            classDropDown.value = 0; // set Default class before Load
+        }
         ClassCheck();
 
         Load();
 
-        //Debug.Log("classDropDown.value = " + classDropDown.value);
+        Debug.Log("healthStat = " + healthStat);
+        Debug.Log("manaStat = " + manaStat);
+        Debug.Log("staminaStat = " + staminaStat);
+        Debug.Log("speedStat = " + speedStat);
+        Debug.Log("sneakyStat = " + sneakyStat);
+        Debug.Log("shootStat = " + shootStat);
     }
 
     // Update is called once per frame
@@ -197,7 +204,7 @@ public class CustomiseSet : MonoBehaviour
             healthStat = healthStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             healthBars[healthStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -211,7 +218,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (healthStat - healthMinStat); // give the skillPoints back
 
             healthStat = healthMinStat; // reset healthStat if trying to go past max
-            Debug.Log("healthStat = " + healthStat);
+            //Debug.Log("healthStat = " + healthStat);
 
             switch (healthMinStat)
             {
@@ -256,7 +263,7 @@ public class CustomiseSet : MonoBehaviour
             manaStat = manaStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             manaBars[manaStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -270,7 +277,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (manaStat - manaMinStat); // give the skillPoints back
 
             manaStat = manaMinStat; // reset healthStat if trying to go past max
-            Debug.Log("manaStat = " + manaStat);
+            //Debug.Log("manaStat = " + manaStat);
 
             switch (manaMinStat)
             {
@@ -315,7 +322,7 @@ public class CustomiseSet : MonoBehaviour
             staminaStat = staminaStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             staminaBars[staminaStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -329,7 +336,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (staminaStat - staminaMinStat); // give the skillPoints back
 
             staminaStat = staminaMinStat; // reset healthStat if trying to go past max
-            Debug.Log("staminaStat = " + staminaStat);
+            //Debug.Log("staminaStat = " + staminaStat);
 
             switch (staminaMinStat)
             {
@@ -374,7 +381,7 @@ public class CustomiseSet : MonoBehaviour
             speedStat = speedStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             speedBars[speedStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -388,7 +395,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (speedStat - speedMinStat); // give the skillPoints back
 
             speedStat = speedMinStat; // reset healthStat if trying to go past max
-            Debug.Log("speedStat = " + speedStat);
+            //Debug.Log("speedStat = " + speedStat);
 
             switch (speedMinStat)
             {
@@ -433,7 +440,7 @@ public class CustomiseSet : MonoBehaviour
             sneakyStat = sneakyStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             sneakyBars[sneakyStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -447,7 +454,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (sneakyStat - sneakyMinStat); // give the skillPoints back
 
             sneakyStat = sneakyMinStat; // reset healthStat if trying to go past max
-            Debug.Log("sneakyStat = " + sneakyStat);
+            //Debug.Log("sneakyStat = " + sneakyStat);
 
             switch (sneakyMinStat)
             {
@@ -492,7 +499,7 @@ public class CustomiseSet : MonoBehaviour
             shootStat = shootStat + 1; // increment healthStat
 
             skillPoints = skillPoints - 1;
-            Debug.Log("skillPoints = " + skillPoints);
+            //Debug.Log("skillPoints = " + skillPoints);
 
             shootBars[shootStat - 1].SetActive(true); // activate appropriate healthbar
 
@@ -506,7 +513,7 @@ public class CustomiseSet : MonoBehaviour
             skillPoints = skillPoints + (shootStat - shootMinStat); // give the skillPoints back
 
             shootStat = shootMinStat; // reset healthStat if trying to go past max
-            Debug.Log("shootStat = " + shootStat);
+            //Debug.Log("shootStat = " + shootStat);
 
             switch (shootMinStat)
             {
@@ -546,409 +553,412 @@ public class CustomiseSet : MonoBehaviour
 
     public void ClassCheck()
     {
-        switch (classDropDown.value) // for classDropDown.value
+        if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
         {
-            case 0: // if classDropDown.value == 0
-                skillPoints = skillPointsMax; // reset skillPoints when choosing new Class
-                SkillBarUpdate();
-
-                healthStat = 3;
-                healthMinStat = 3;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(true);
-                healthBars[2].SetActive(true);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 2;
-                manaMinStat = 2;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(true);
-                manaBars[2].SetActive(false);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 1;
-                staminaMinStat = 1;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(false);
-                staminaBars[2].SetActive(false);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 3;
-                speedMinStat = 3;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(true);
-                speedBars[2].SetActive(true);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 2;
-                sneakyMinStat = 2;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(true);
-                sneakyBars[2].SetActive(false);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 1;
-                shootMinStat = 1;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(false);
-                shootBars[2].SetActive(false);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-
-            case 1:
-                skillPoints = skillPointsMax;
-                SkillBarUpdate();
-
-                healthStat = 3;
-                healthMinStat = 3;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(true);
-                healthBars[2].SetActive(true);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 1;
-                manaMinStat = 1;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(false);
-                manaBars[2].SetActive(false);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 2;
-                staminaMinStat = 2;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(true);
-                staminaBars[2].SetActive(false);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 3;
-                speedMinStat = 3;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(true);
-                speedBars[2].SetActive(true);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 1;
-                sneakyMinStat = 1;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(false);
-                sneakyBars[2].SetActive(false);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 2;
-                shootMinStat = 2;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(true);
-                shootBars[2].SetActive(false);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-
-            case 2:
-                skillPoints = skillPointsMax;
-                SkillBarUpdate();
-
-                healthStat = 2;
-                healthMinStat = 2;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(true);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 1;
-                manaMinStat = 1;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(false);
-                manaBars[2].SetActive(false);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 3;
-                staminaMinStat = 3;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(true);
-                staminaBars[2].SetActive(true);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 2;
-                speedMinStat = 2;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(true);
-                speedBars[2].SetActive(false);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 1;
-                sneakyMinStat = 1;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(false);
-                sneakyBars[2].SetActive(false);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 3;
-                shootMinStat = 3;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(true);
-                shootBars[2].SetActive(true);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-
-            case 3:
-                skillPoints = skillPointsMax;
-                SkillBarUpdate();
-
-                healthStat = 2;
-                healthMinStat = 2;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(true);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 3;
-                manaMinStat = 3;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(true);
-                manaBars[2].SetActive(true);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 1;
-                staminaMinStat = 1;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(false);
-                staminaBars[2].SetActive(false);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 2;
-                speedMinStat = 2;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(true);
-                speedBars[2].SetActive(false);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 3;
-                sneakyMinStat = 3;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(true);
-                sneakyBars[2].SetActive(true);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 1;
-                shootMinStat = 1;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(false);
-                shootBars[2].SetActive(false);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-
-            case 4:
-                skillPoints = skillPointsMax;
-                SkillBarUpdate();
-
-                healthStat = 1;
-                healthMinStat = 1;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(false);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 3;
-                manaMinStat = 3;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(true);
-                manaBars[2].SetActive(true);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 2;
-                staminaMinStat = 2;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(true);
-                staminaBars[2].SetActive(false);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 1;
-                speedMinStat = 1;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(false);
-                speedBars[2].SetActive(false);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 3;
-                sneakyMinStat = 3;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(true);
-                sneakyBars[2].SetActive(true);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 2;
-                shootMinStat = 2;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(true);
-                shootBars[2].SetActive(false);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-
-            case 5:
-                skillPoints = skillPointsMax;
-                SkillBarUpdate();
-
-                healthStat = 1;
-                healthMinStat = 1;
-
-                healthBars[0].SetActive(true);
-                healthBars[1].SetActive(false);
-                healthBars[2].SetActive(false);
-                healthBars[3].SetActive(false);
-                healthBars[4].SetActive(false);
-                healthBars[5].SetActive(false);
-
-                manaStat = 2;
-                manaMinStat = 2;
-
-                manaBars[0].SetActive(true);
-                manaBars[1].SetActive(true);
-                manaBars[2].SetActive(false);
-                manaBars[3].SetActive(false);
-                manaBars[4].SetActive(false);
-                manaBars[5].SetActive(false);
-
-                staminaStat = 3;
-                staminaMinStat = 3;
-
-                staminaBars[0].SetActive(true);
-                staminaBars[1].SetActive(true);
-                staminaBars[2].SetActive(true);
-                staminaBars[3].SetActive(false);
-                staminaBars[4].SetActive(false);
-                staminaBars[5].SetActive(false);
-
-                speedStat = 1;
-                speedMinStat = 1;
-
-                speedBars[0].SetActive(true);
-                speedBars[1].SetActive(false);
-                speedBars[2].SetActive(false);
-                speedBars[3].SetActive(false);
-                speedBars[4].SetActive(false);
-                speedBars[5].SetActive(false);
-
-                sneakyStat = 2;
-                sneakyMinStat = 2;
-
-                sneakyBars[0].SetActive(true);
-                sneakyBars[1].SetActive(true);
-                sneakyBars[2].SetActive(false);
-                sneakyBars[3].SetActive(false);
-                sneakyBars[4].SetActive(false);
-                sneakyBars[5].SetActive(false);
-
-                shootStat = 3;
-                shootMinStat = 3;
-
-                shootBars[0].SetActive(true);
-                shootBars[1].SetActive(true);
-                shootBars[2].SetActive(true);
-                shootBars[3].SetActive(false);
-                shootBars[4].SetActive(false);
-                shootBars[5].SetActive(false);
-
-                break;
-        }   
+            switch (classDropDown.value) // for classDropDown.value
+            {
+                case 0: // if classDropDown.value == 0
+                    skillPoints = skillPointsMax; // reset skillPoints when choosing new Class
+                    SkillBarUpdate();
+
+                    healthStat = 3;
+                    healthMinStat = 3;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(true);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 2;
+                    manaMinStat = 2;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 1;
+                    staminaMinStat = 1;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(false);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 3;
+                    speedMinStat = 3;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(true);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 2;
+                    sneakyMinStat = 2;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 1;
+                    shootMinStat = 1;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(false);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+
+                case 1:
+                    skillPoints = skillPointsMax;
+                    SkillBarUpdate();
+
+                    healthStat = 3;
+                    healthMinStat = 3;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(true);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 1;
+                    manaMinStat = 1;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(false);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 2;
+                    staminaMinStat = 2;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 3;
+                    speedMinStat = 3;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(true);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 1;
+                    sneakyMinStat = 1;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(false);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 2;
+                    shootMinStat = 2;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+
+                case 2:
+                    skillPoints = skillPointsMax;
+                    SkillBarUpdate();
+
+                    healthStat = 2;
+                    healthMinStat = 2;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 1;
+                    manaMinStat = 1;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(false);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 3;
+                    staminaMinStat = 3;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(true);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 2;
+                    speedMinStat = 2;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 1;
+                    sneakyMinStat = 1;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(false);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 3;
+                    shootMinStat = 3;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(true);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+
+                case 3:
+                    skillPoints = skillPointsMax;
+                    SkillBarUpdate();
+
+                    healthStat = 2;
+                    healthMinStat = 2;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(true);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 3;
+                    manaMinStat = 3;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(true);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 1;
+                    staminaMinStat = 1;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(false);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 2;
+                    speedMinStat = 2;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(true);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 3;
+                    sneakyMinStat = 3;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(true);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 1;
+                    shootMinStat = 1;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(false);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+
+                case 4:
+                    skillPoints = skillPointsMax;
+                    SkillBarUpdate();
+
+                    healthStat = 1;
+                    healthMinStat = 1;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(false);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 3;
+                    manaMinStat = 3;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(true);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 2;
+                    staminaMinStat = 2;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(false);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 1;
+                    speedMinStat = 1;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(false);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 3;
+                    sneakyMinStat = 3;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(true);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 2;
+                    shootMinStat = 2;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(false);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+
+                case 5:
+                    skillPoints = skillPointsMax;
+                    SkillBarUpdate();
+
+                    healthStat = 1;
+                    healthMinStat = 1;
+
+                    healthBars[0].SetActive(true);
+                    healthBars[1].SetActive(false);
+                    healthBars[2].SetActive(false);
+                    healthBars[3].SetActive(false);
+                    healthBars[4].SetActive(false);
+                    healthBars[5].SetActive(false);
+
+                    manaStat = 2;
+                    manaMinStat = 2;
+
+                    manaBars[0].SetActive(true);
+                    manaBars[1].SetActive(true);
+                    manaBars[2].SetActive(false);
+                    manaBars[3].SetActive(false);
+                    manaBars[4].SetActive(false);
+                    manaBars[5].SetActive(false);
+
+                    staminaStat = 3;
+                    staminaMinStat = 3;
+
+                    staminaBars[0].SetActive(true);
+                    staminaBars[1].SetActive(true);
+                    staminaBars[2].SetActive(true);
+                    staminaBars[3].SetActive(false);
+                    staminaBars[4].SetActive(false);
+                    staminaBars[5].SetActive(false);
+
+                    speedStat = 1;
+                    speedMinStat = 1;
+
+                    speedBars[0].SetActive(true);
+                    speedBars[1].SetActive(false);
+                    speedBars[2].SetActive(false);
+                    speedBars[3].SetActive(false);
+                    speedBars[4].SetActive(false);
+                    speedBars[5].SetActive(false);
+
+                    sneakyStat = 2;
+                    sneakyMinStat = 2;
+
+                    sneakyBars[0].SetActive(true);
+                    sneakyBars[1].SetActive(true);
+                    sneakyBars[2].SetActive(false);
+                    sneakyBars[3].SetActive(false);
+                    sneakyBars[4].SetActive(false);
+                    sneakyBars[5].SetActive(false);
+
+                    shootStat = 3;
+                    shootMinStat = 3;
+
+                    shootBars[0].SetActive(true);
+                    shootBars[1].SetActive(true);
+                    shootBars[2].SetActive(true);
+                    shootBars[3].SetActive(false);
+                    shootBars[4].SetActive(false);
+                    shootBars[5].SetActive(false);
+
+                    break;
+            }
+        }
     }
     
     void SkillBarUpdate()
     {
-        Debug.Log("skillPoints = " + skillPoints);
+        //Debug.Log("skillPoints = " + skillPoints);
 
         switch (skillPoints)
         {
@@ -1110,6 +1120,13 @@ public class CustomiseSet : MonoBehaviour
 
         PlayerPrefs.SetInt("Class Dropdown", classDropDown.value);
 
+        PlayerPrefs.SetInt("Health Stat", healthStat);
+        PlayerPrefs.SetInt("Mana Stat", manaStat);
+        PlayerPrefs.SetInt("Stamina Stat", staminaStat);
+        PlayerPrefs.SetInt("Speed Stat", speedStat);
+        PlayerPrefs.SetInt("Sneaky Stat", sneakyStat);
+        PlayerPrefs.SetInt("Shoot Stat", shootStat);
+
         SceneManager.LoadScene("Game");
     }
 
@@ -1130,7 +1147,19 @@ public class CustomiseSet : MonoBehaviour
         beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
         hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
 
-        classDropDown.value = PlayerPrefs.GetInt("Class Dropdown");
+        if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
+        {
+            classDropDown.value = PlayerPrefs.GetInt("Class Dropdown");
+        }
 
+        if (SceneManager.GetActiveScene().name == "Game") // Only get saved Stats when in Game scene
+        {
+            healthStat = PlayerPrefs.GetInt("Health Stat");
+            manaStat = PlayerPrefs.GetInt("Mana Stat");
+            staminaStat = PlayerPrefs.GetInt("Stamina Stat");
+            speedStat = PlayerPrefs.GetInt("Speed Stat");
+            sneakyStat = PlayerPrefs.GetInt("Sneaky Stat");
+            shootStat = PlayerPrefs.GetInt("Shoot Stat");
+        }
     }
 }
