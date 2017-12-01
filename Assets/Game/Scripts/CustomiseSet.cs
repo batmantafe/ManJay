@@ -137,6 +137,24 @@ public class CustomiseSet : MonoBehaviour
         }
     }
 
+    public void RandomColoursButton()
+    {
+        headMatsIndex = Random.Range(0, matsMaxIndex);
+        bodyMatsIndex = Random.Range(0, matsMaxIndex);
+        earMatsIndex = Random.Range(0, matsMaxIndex);
+        eyeMatsIndex = Random.Range(0, matsMaxIndex);
+        beardMatsIndex = Random.Range(0, matsMaxIndex);
+        hairMatsIndex = Random.Range(0, matsMaxIndex);
+
+        head.GetComponent<Renderer>().material = mats[headMatsIndex];
+        body.GetComponent<Renderer>().material = mats[bodyMatsIndex];
+        ear1.GetComponent<Renderer>().material = mats[earMatsIndex];
+        ear2.GetComponent<Renderer>().material = mats[earMatsIndex];
+        eye.GetComponent<Renderer>().material = mats[eyeMatsIndex];
+        beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
+        hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
+    }
+
     public void SaveAndPlayButton()
     {
         PlayerPrefs.SetInt("Head Colour", headMatsIndex);
