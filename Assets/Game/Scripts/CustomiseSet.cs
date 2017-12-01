@@ -19,6 +19,7 @@ public class CustomiseSet : MonoBehaviour
     public GameObject[] speedBars;
     public GameObject[] sneakyBars;
     public GameObject[] shootBars;
+    public GameObject[] skillBars;
     public int healthStat, healthMinStat,
         manaStat, manaMinStat,
         staminaStat, staminaMinStat,
@@ -55,13 +56,13 @@ public class CustomiseSet : MonoBehaviour
 
         Load();
 
-        Debug.Log("classDropDown.value = " + classDropDown.value);
+        //Debug.Log("classDropDown.value = " + classDropDown.value);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     #region Colours
@@ -200,6 +201,8 @@ public class CustomiseSet : MonoBehaviour
 
             healthBars[healthStat - 1].SetActive(true); // activate appropriate healthbar
 
+            SkillBarUpdate(); // take from Skill Bar
+
             return;
         }
 
@@ -240,6 +243,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate(); // take from Skill Bar
+
             return;
         }
     }
@@ -254,6 +259,8 @@ public class CustomiseSet : MonoBehaviour
             Debug.Log("skillPoints = " + skillPoints);
 
             manaBars[manaStat - 1].SetActive(true); // activate appropriate healthbar
+
+            SkillBarUpdate();
 
             return;
         }
@@ -295,6 +302,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate();
+
             return;
         }
     }
@@ -309,6 +318,8 @@ public class CustomiseSet : MonoBehaviour
             Debug.Log("skillPoints = " + skillPoints);
 
             staminaBars[staminaStat - 1].SetActive(true); // activate appropriate healthbar
+
+            SkillBarUpdate();
 
             return;
         }
@@ -350,6 +361,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate();
+
             return;
         }
     }
@@ -364,6 +377,8 @@ public class CustomiseSet : MonoBehaviour
             Debug.Log("skillPoints = " + skillPoints);
 
             speedBars[speedStat - 1].SetActive(true); // activate appropriate healthbar
+
+            SkillBarUpdate();
 
             return;
         }
@@ -405,6 +420,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate();
+
             return;
         }
     }
@@ -419,6 +436,8 @@ public class CustomiseSet : MonoBehaviour
             Debug.Log("skillPoints = " + skillPoints);
 
             sneakyBars[sneakyStat - 1].SetActive(true); // activate appropriate healthbar
+
+            SkillBarUpdate();
 
             return;
         }
@@ -460,6 +479,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate();
+
             return;
         }
     }
@@ -474,6 +495,8 @@ public class CustomiseSet : MonoBehaviour
             Debug.Log("skillPoints = " + skillPoints);
 
             shootBars[shootStat - 1].SetActive(true); // activate appropriate healthbar
+
+            SkillBarUpdate();
 
             return;
         }
@@ -515,6 +538,8 @@ public class CustomiseSet : MonoBehaviour
                     break;
             }
 
+            SkillBarUpdate();
+
             return;
         }
     }
@@ -525,6 +550,7 @@ public class CustomiseSet : MonoBehaviour
         {
             case 0: // if classDropDown.value == 0
                 skillPoints = skillPointsMax; // reset skillPoints when choosing new Class
+                SkillBarUpdate();
 
                 healthStat = 3;
                 healthMinStat = 3;
@@ -590,6 +616,7 @@ public class CustomiseSet : MonoBehaviour
 
             case 1:
                 skillPoints = skillPointsMax;
+                SkillBarUpdate();
 
                 healthStat = 3;
                 healthMinStat = 3;
@@ -655,6 +682,7 @@ public class CustomiseSet : MonoBehaviour
 
             case 2:
                 skillPoints = skillPointsMax;
+                SkillBarUpdate();
 
                 healthStat = 2;
                 healthMinStat = 2;
@@ -720,6 +748,7 @@ public class CustomiseSet : MonoBehaviour
 
             case 3:
                 skillPoints = skillPointsMax;
+                SkillBarUpdate();
 
                 healthStat = 2;
                 healthMinStat = 2;
@@ -785,6 +814,7 @@ public class CustomiseSet : MonoBehaviour
 
             case 4:
                 skillPoints = skillPointsMax;
+                SkillBarUpdate();
 
                 healthStat = 1;
                 healthMinStat = 1;
@@ -850,6 +880,7 @@ public class CustomiseSet : MonoBehaviour
 
             case 5:
                 skillPoints = skillPointsMax;
+                SkillBarUpdate();
 
                 healthStat = 1;
                 healthMinStat = 1;
@@ -914,6 +945,158 @@ public class CustomiseSet : MonoBehaviour
                 break;
         }   
     }
+    
+    void SkillBarUpdate()
+    {
+        Debug.Log("skillPoints = " + skillPoints);
+
+        switch (skillPoints)
+        {
+            case 0:
+                skillBars[0].SetActive(false);
+                skillBars[1].SetActive(false);
+                skillBars[2].SetActive(false);
+                skillBars[3].SetActive(false);
+                skillBars[4].SetActive(false);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 1:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(false);
+                skillBars[2].SetActive(false);
+                skillBars[3].SetActive(false);
+                skillBars[4].SetActive(false);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 2:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(false);
+                skillBars[3].SetActive(false);
+                skillBars[4].SetActive(false);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 3:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(false);
+                skillBars[4].SetActive(false);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 4:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(false);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 5:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(false);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 6:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(true);
+                skillBars[6].SetActive(false);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 7:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(true);
+                skillBars[6].SetActive(true);
+                skillBars[7].SetActive(false);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 8:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(true);
+                skillBars[6].SetActive(true);
+                skillBars[7].SetActive(true);
+                skillBars[8].SetActive(false);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 9:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(true);
+                skillBars[6].SetActive(true);
+                skillBars[7].SetActive(true);
+                skillBars[8].SetActive(true);
+                skillBars[9].SetActive(false);
+                break;
+
+            case 10:
+                skillBars[0].SetActive(true);
+                skillBars[1].SetActive(true);
+                skillBars[2].SetActive(true);
+                skillBars[3].SetActive(true);
+                skillBars[4].SetActive(true);
+                skillBars[5].SetActive(true);
+                skillBars[6].SetActive(true);
+                skillBars[7].SetActive(true);
+                skillBars[8].SetActive(true);
+                skillBars[9].SetActive(true);
+                break;
+        }
+    }
+    
     #endregion
 
     public void SaveAndPlayButton()
