@@ -14,7 +14,7 @@ public class CustomiseSet : MonoBehaviour
 
     [Header("Stats")]
     public GameObject[] healthBars;
-    public int healthStat, healthMinStat, manaStat, staminaStat, maxStat;
+    public int healthStat, healthMinStat, manaStat, staminaStat, maxStat, skillPoints;
 
     [Header("Classes")]
     public Dropdown classDropDown;
@@ -35,12 +35,15 @@ public class CustomiseSet : MonoBehaviour
         manaStat = 1;
         staminaStat = 1;
         maxStat = 6;
+        skillPoints = 2;
 
         classDropDown.value = 0; // set Default class before Load
 
         ClassCheck();
 
         Load();
+
+        Debug.Log("classDropDown.value = " + classDropDown.value);
     }
 
     // Update is called once per frame
@@ -176,18 +179,22 @@ public class CustomiseSet : MonoBehaviour
     #region Stats
     public void HealthButton()
     {
-        if (healthStat < maxStat)
+        if (healthStat < maxStat && skillPoints > 0)
         {
             healthStat = healthStat + 1; // increment healthStat
-            Debug.Log("healthStat = " + healthStat);
+
+            skillPoints = skillPoints - 1;
+            Debug.Log("skillPoints = " + skillPoints);
 
             healthBars[healthStat - 1].SetActive(true); // activate appropriate healthbar
 
             return;
         }
 
-        if (healthStat >= maxStat)
+        if ((healthStat >= maxStat && skillPoints > 0) || (maxStat - healthStat > 0 && skillPoints == 0))
         {
+            skillPoints = skillPoints + (healthStat - healthMinStat); // give the skillPoints back
+
             healthStat = healthMinStat; // reset healthStat if trying to go past max
             Debug.Log("healthStat = " + healthStat);
 
@@ -353,6 +360,8 @@ public class CustomiseSet : MonoBehaviour
         PlayerPrefs.SetInt("Beard Colour", beardMatsIndex);
         PlayerPrefs.SetInt("Hair Colour", hairMatsIndex);
 
+        PlayerPrefs.SetInt("Class Dropdown", classDropDown.value);
+
         SceneManager.LoadScene("Game");
     }
 
@@ -372,5 +381,8 @@ public class CustomiseSet : MonoBehaviour
         eye.GetComponent<Renderer>().material = mats[eyeMatsIndex];
         beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
         hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
+
+        classDropDown.value = PlayerPrefs.GetInt("Class Dropdown");
+
     }
 }
