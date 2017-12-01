@@ -57,17 +57,18 @@ public class CustomiseSet : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
         {
             classDropDown.value = 0; // set Default class before Load
+            Cursor.visible = true;
         }
         ClassCheck();
 
         Load();
 
-        Debug.Log("healthStat = " + healthStat);
+        /*Debug.Log("healthStat = " + healthStat);
         Debug.Log("manaStat = " + manaStat);
         Debug.Log("staminaStat = " + staminaStat);
         Debug.Log("speedStat = " + speedStat);
         Debug.Log("sneakyStat = " + sneakyStat);
-        Debug.Log("shootStat = " + shootStat);
+        Debug.Log("shootStat = " + shootStat);*/
     }
 
     // Update is called once per frame

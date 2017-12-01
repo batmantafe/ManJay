@@ -5,15 +5,19 @@ using UnityEngine;
 public class Look : MonoBehaviour
 {
     [Header("Raycast")]
-    public float rayDistance = 60f;
+    public float rayDistance = 100f;
     private Ray drawRay;
 
     public GameObject enemySeek;
 
+    public GameObject player;
+
     // Use this for initialization
     void Start()
     {
-        
+        rayDistance = player.GetComponent<PlayerStats>().playerSneaky; // << CHECK THIS!
+        //Debug.Log("Player playerSneaky = " + player.GetComponent<PlayerStats>().playerSneaky);
+        Debug.Log("Enemy rayDistance = " + rayDistance);
     }
 
     // Update is called once per frame
@@ -52,11 +56,11 @@ public class Look : MonoBehaviour
             {
                 if (rayHit.collider.GetComponent<Movement>() != null) // Does raycast hit object with Movement script? (Player)
                 {
-                    Debug.Log("Enemy sees Player!");
+                    //Debug.Log("Enemy sees Player!");
 
                     enemySeek.GetComponent<PathFollowing>().target = rayHit.collider.GetComponentInParent<Transform>(); // If so, Enemy target in Seek script is Transform (Movement script is in the Child) of raycast hit object!
 
-                    Debug.Log("Enemy Seek target = " + enemySeek.GetComponent<PathFollowing>().target);
+                    //Debug.Log("Enemy Seek target = " + enemySeek.GetComponent<PathFollowing>().target);
 
                     
                 }
