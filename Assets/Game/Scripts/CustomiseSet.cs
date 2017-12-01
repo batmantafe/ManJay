@@ -8,9 +8,9 @@ public class CustomiseSet : MonoBehaviour
 {
     public Material[] mats;
 
-    public GameObject head, body, ear1, ear2, eye;
+    public GameObject head, body, ear1, ear2, eye, beard, hair;
 
-    public int headMatsIndex, bodyMatsIndex, earMatsIndex, eyeMatsIndex, matsMaxIndex;
+    public int headMatsIndex, bodyMatsIndex, earMatsIndex, eyeMatsIndex, beardMatsIndex, hairMatsIndex, matsMaxIndex;
 
     // Use this for initialization
     void Start()
@@ -19,6 +19,8 @@ public class CustomiseSet : MonoBehaviour
         bodyMatsIndex = 0;
         earMatsIndex = 0;
         eyeMatsIndex = 0;
+        beardMatsIndex = 0;
+        hairMatsIndex = 0;
 
         Load();
 
@@ -101,17 +103,48 @@ public class CustomiseSet : MonoBehaviour
         }
     }
 
+    public void BeardColourButton()
+    {
+        if (beardMatsIndex < matsMaxIndex)
+        {
+            beard.GetComponent<Renderer>().material = mats[beardMatsIndex + 1]; // whatever Mats is, plus One
+            beardMatsIndex = beardMatsIndex + 1;
+            return;
+        }
+
+        if (beardMatsIndex == matsMaxIndex)
+        {
+            beard.GetComponent<Renderer>().material = mats[0]; // reset Mats to Zero
+            beardMatsIndex = 0;
+            return;
+        }
+    }
+
+    public void HairColourButton()
+    {
+        if (hairMatsIndex < matsMaxIndex)
+        {
+            hair.GetComponent<Renderer>().material = mats[hairMatsIndex + 1]; // whatever Mats is, plus One
+            hairMatsIndex = hairMatsIndex + 1;
+            return;
+        }
+
+        if (hairMatsIndex == matsMaxIndex)
+        {
+            hair.GetComponent<Renderer>().material = mats[0]; // reset Mats to Zero
+            hairMatsIndex = 0;
+            return;
+        }
+    }
+
     public void SaveAndPlayButton()
     {
         PlayerPrefs.SetInt("Head Colour", headMatsIndex);
         PlayerPrefs.SetInt("Body Colour", bodyMatsIndex);
         PlayerPrefs.SetInt("Ear Colour", earMatsIndex);
         PlayerPrefs.SetInt("Eye Colour", eyeMatsIndex);
-
-        Debug.Log("headMatsIndex = " + headMatsIndex);
-        Debug.Log("bodyMatsIndex = " + bodyMatsIndex);
-        Debug.Log("earMatsIndex = " + earMatsIndex);
-        Debug.Log("eyeMatsIndex = " + eyeMatsIndex);
+        PlayerPrefs.SetInt("Beard Colour", beardMatsIndex);
+        PlayerPrefs.SetInt("Hair Colour", hairMatsIndex);
 
         SceneManager.LoadScene("Game");
     }
@@ -122,11 +155,15 @@ public class CustomiseSet : MonoBehaviour
         bodyMatsIndex = PlayerPrefs.GetInt("Body Colour");
         earMatsIndex = PlayerPrefs.GetInt("Ear Colour");
         eyeMatsIndex = PlayerPrefs.GetInt("Eye Colour");
+        beardMatsIndex = PlayerPrefs.GetInt("Beard Colour");
+        hairMatsIndex = PlayerPrefs.GetInt("Hair Colour");
 
         head.GetComponent<Renderer>().material = mats[headMatsIndex];
         body.GetComponent<Renderer>().material = mats[bodyMatsIndex];
         ear1.GetComponent<Renderer>().material = mats[earMatsIndex];
         ear2.GetComponent<Renderer>().material = mats[earMatsIndex];
         eye.GetComponent<Renderer>().material = mats[eyeMatsIndex];
+        beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
+        hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
     }
 }
