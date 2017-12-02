@@ -60,7 +60,7 @@ public class Movement : MonoBehaviour
         staminaTimerCountdown = 1;
         staminaBool = false;
 
-        Debug.Log("playerMana = " + gameObject.GetComponent<PlayerStats>().playerMana);
+        //Debug.Log("playerMana = " + gameObject.GetComponent<PlayerStats>().playerMana);
         manaBool = false;
 
         bulletSpeed = 20;
@@ -123,7 +123,7 @@ public class Movement : MonoBehaviour
             if (staminaTimerFloat <= 0) // keep from going below Zero
             {
                 staminaTimerFloat = 0;
-                speed = 0f;
+                speed = 0.5f;
             }
 
             if (staminaTimerFloat > 0) // to allow normal speed if stamina above 0
@@ -134,7 +134,7 @@ public class Movement : MonoBehaviour
 
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            staminaTimerFloat = staminaTimerFloat + (staminaTimerCountdown * Time.deltaTime);
+            staminaTimerFloat = staminaTimerFloat + ((staminaTimerCountdown * 2) * Time.deltaTime);
             //Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
 
             if (staminaTimerFloat >= staminaTimerMax) // keep from going above Max Stat value
@@ -203,7 +203,7 @@ public class Movement : MonoBehaviour
                 Destroy(bullet, bulletLife);
 
                 manaCounter = manaCounter - 1;
-                Debug.Log("manaCounter = " + manaCounter);
+                //Debug.Log("manaCounter = " + manaCounter);
             }
         }
     }
@@ -214,7 +214,7 @@ public class Movement : MonoBehaviour
         {
             manaCounter = gameObject.GetComponent<PlayerStats>().playerMana;
 
-            Debug.Log("manaCounter = " + manaCounter);
+            //Debug.Log("manaCounter = " + manaCounter);
 
             manaBool = true;
         }

@@ -45,7 +45,7 @@ public class EnemyStats : MonoBehaviour
     {
         if(playerHealthCheck == false)
         {
-            switch (player.GetComponent<PlayerStats>().playerHealth)
+            switch (player.GetComponent<PlayerStats>().playerHealthStat)
             {
                 case 1:
                     enemyHealth = 6;
@@ -78,7 +78,7 @@ public class EnemyStats : MonoBehaviour
                     break;
             }
 
-            //Debug.Log("player.playerHealth = " + player.GetComponent<PlayerStats>().playerHealth);
+            //Debug.Log("player.playerHealthStat = " + player.GetComponent<PlayerStats>().playerHealthStat);
             //Debug.Log("enemyHealth = " + enemyHealth);
 
             playerHealthCheck = true;

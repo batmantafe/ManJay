@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Player Stats")]
-    public int playerHealth;
+    public int playerHealthStat;
     public int playerMana, playerStamina, playerSpeedStat, playerSneakyStat, playerShoot;
-    public float playerSneaky;
+    public float playerSneaky, playerHealth;
 
     public GameObject customiseManager;
 
@@ -30,6 +30,8 @@ public class PlayerStats : MonoBehaviour
 
             SetValues();
 
+            SetPlayerHealth();
+
             //Debug.Log("playerSneaky in PlayerStats after = " + playerSneaky);
         }
     }
@@ -42,8 +44,8 @@ public class PlayerStats : MonoBehaviour
 
     void SetValues()
     {
-        playerHealth = customiseManager.GetComponent<CustomiseSet>().healthStat;
-        Debug.Log("playerHealth = " + playerHealth);
+        playerHealthStat = customiseManager.GetComponent<CustomiseSet>().healthStat;
+        Debug.Log("playerHealthStat = " + playerHealthStat);
 
         playerMana = customiseManager.GetComponent<CustomiseSet>().manaStat;
         playerStamina = customiseManager.GetComponent<CustomiseSet>().staminaStat;
@@ -57,5 +59,49 @@ public class PlayerStats : MonoBehaviour
 
         playerSneaky = sneakyValues[playerSneakyStat - 1];
         //Debug.Log("playerSneaky = " + playerSneaky);
+    }
+
+    void SetPlayerHealth()
+    {
+        switch(playerHealthStat)
+        {
+            case 1:
+                playerHealth = 1;
+                break;
+
+            case 2:
+                playerHealth = 2;
+                break;
+
+            case 3:
+                playerHealth = 3;
+                break;
+
+            case 4:
+                playerHealth = 4;
+                break;
+
+            case 5:
+                playerHealth = 5;
+                break;
+
+            case 6:
+                playerHealth = 6;
+                break;
+        }
+    }
+
+    void OnCollisionEnter (Collision other)
+    {
+        if(other.collider.CompareTag("Enemy"))
+        {
+            playerHealth = playerHealth - (1 * Time.deltaTime);
+            Debug.Log("playerHealth = " + playerHealth);
+
+            if (playerHealth <= 0)
+            {
+                SceneManager.LoadScene("Customise");
+            }
+        }
     }
 }
