@@ -5,25 +5,37 @@ using UnityEngine;
 public class Look : MonoBehaviour
 {
     [Header("Raycast")]
-    public float rayDistance = 100f;
+    public float rayDistance;
     private Ray drawRay;
 
     public GameObject enemySeek;
 
     public GameObject player;
 
+
+
     // Use this for initialization
     void Start()
     {
-        rayDistance = player.GetComponent<PlayerStats>().playerSneaky; // << CHECK THIS!
-        //Debug.Log("Player playerSneaky = " + player.GetComponent<PlayerStats>().playerSneaky);
-        Debug.Log("Enemy rayDistance = " + rayDistance);
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         RayCastLook();
+    }
+
+    void Update()
+    {
+        if (player.GetComponent<PlayerStats>().playerSneaky != 0)
+        {
+            rayDistance = player.GetComponent<PlayerStats>().playerSneaky;
+            //Debug.Log("Player playerSneaky = " + player.GetComponent<PlayerStats>().playerSneaky);
+            //Debug.Log("Enemy rayDistance = " + rayDistance);
+
+            return;
+        }
     }
 
     void RecalculateRay()
