@@ -117,7 +117,7 @@ public class Movement : MonoBehaviour
 
     void StaminaTimerFunction() // if Player is pressing a Movement Key, minus Stamina/reduce Speed, if not, increase Stamina/normal Speed
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) // I didn't do this for the Arrow Keys for easier Debugging, since of my time is spent Debugging
         {
             staminaTimerFloat = staminaTimerFloat - (staminaTimerCountdown * Time.deltaTime);
             //Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
