@@ -205,12 +205,12 @@ public class CustomiseSet : MonoBehaviour
 
     public void RandomColoursButton()
     {
-        headMatsIndex = Random.Range(0, matsMaxIndex);
-        bodyMatsIndex = Random.Range(0, matsMaxIndex);
-        earMatsIndex = Random.Range(0, matsMaxIndex);
-        eyeMatsIndex = Random.Range(0, matsMaxIndex);
-        beardMatsIndex = Random.Range(0, matsMaxIndex);
-        hairMatsIndex = Random.Range(0, matsMaxIndex);
+        headMatsIndex = Random.Range(0, matsMaxIndex + 1);
+        bodyMatsIndex = Random.Range(0, matsMaxIndex + 1);
+        earMatsIndex = Random.Range(0, matsMaxIndex + 1);
+        eyeMatsIndex = Random.Range(0, matsMaxIndex + 1);
+        beardMatsIndex = Random.Range(0, matsMaxIndex + 1);
+        hairMatsIndex = Random.Range(0, matsMaxIndex + 1);
 
         head.GetComponent<Renderer>().material = mats[headMatsIndex];
         body.GetComponent<Renderer>().material = mats[bodyMatsIndex];

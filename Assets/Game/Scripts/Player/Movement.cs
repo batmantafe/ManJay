@@ -39,10 +39,11 @@ public class Movement : MonoBehaviour
     public bool staminaBool;
 
     [Header("Shoot")]
-    public GameObject bulletPrefab;
+    public GameObject[] bulletPrefabs;
     public Transform bulletSpawn;
     public float bulletSpeed;
     public float bulletLife;
+    public GameObject customiseManager;
 
     [Header("Mana")]
     public int manaCounter;
@@ -197,7 +198,7 @@ public class Movement : MonoBehaviour
         {
             if (manaCounter > 0)
             {
-                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+                GameObject bullet = Instantiate(bulletPrefabs[customiseManager.GetComponent<CustomiseSet>().eyeMatsIndex], bulletSpawn.position, bulletSpawn.rotation);
                 bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
                 Destroy(bullet, bulletLife);
 
