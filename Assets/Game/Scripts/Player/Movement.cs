@@ -9,9 +9,9 @@ using UnityEngine.SceneManagement;
 [AddComponentMenu("Character Set Up/Character Movement")]
 
 //This script requires the component Character controller
-[RequireComponent(typeof (CharacterController))]
+[RequireComponent(typeof(CharacterController))]
 
-public class Movement : MonoBehaviour 
+public class Movement : MonoBehaviour
 {
     #region Variables
     //[Header("Characters MoveDirection")]
@@ -32,6 +32,11 @@ public class Movement : MonoBehaviour
     public float speed = 6.0f;
     public float gravity = 20.0f;
 
+    public float staminaTimerFloat;
+    public float staminaTimerMax;
+    public float staminaTimerCountdown;
+    public bool staminaBool;
+
     #endregion
 
     #region Start
@@ -40,15 +45,20 @@ public class Movement : MonoBehaviour
         //charc is on this game object we need to get the character controller that is attached to it
         charC = this.GetComponent<CharacterController>();
 
-        
+        staminaTimerCountdown = 1;
+        staminaBool = false;
+
+        //Debug.Log("PlayerStat's playerStamina = " + gameObject.GetComponent<PlayerStats>().playerStamina);
     }
     #endregion
 
     #region Update
     void Update()
     {
+        GetStaminaStatFunction();
+        
         //if our character is grounded
-        if(charC.isGrounded)
+        if (charC.isGrounded)
         {
             //we are able to move in game scene meaning
             //Input Manager(https://docs.unity3d.com/Manual/class-InputManager.html)
@@ -69,6 +79,8 @@ public class Movement : MonoBehaviour
                 //our moveDir.y is equal to our jump speed
                 moveDir.y = jumpSpeed;
             }*/
+
+            StaminaTimerFunction();
         }
 
         //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
@@ -81,7 +93,84 @@ public class Movement : MonoBehaviour
     }
     #endregion
 
-    
+    void StaminaTimerFunction() // if Player is pressing a Movement Key, minus Stamina/reduce Speed, if not, increase Stamina/normal Speed
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            staminaTimerFloat = staminaTimerFloat - (staminaTimerCountdown * Time.deltaTime);
+            Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
+
+            if (staminaTimerFloat <= 0) // keep from going below Zero
+            {
+                staminaTimerFloat = 0;
+                speed = 0f;
+            }
+
+            if (staminaTimerFloat > 0) // to allow normal speed if stamina above 0
+            {
+                speed = gameObject.GetComponent<PlayerStats>().playerStamina;
+            }
+        }
+
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            staminaTimerFloat = staminaTimerFloat + (staminaTimerCountdown * Time.deltaTime);
+            Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
+
+            if (staminaTimerFloat >= staminaTimerMax) // keep from going above Max Stat value
+            {
+                staminaTimerFloat = staminaTimerMax;
+                speed = gameObject.GetComponent<PlayerStats>().playerStamina;
+            }
+        }
+    }
+
+    void GetStaminaStatFunction() // Get Stamina value
+    {
+        if (gameObject.GetComponent<PlayerStats>().playerStamina != 0 && staminaBool == false)
+        {
+            switch (gameObject.GetComponent<PlayerStats>().playerStamina)
+            {
+                case 1:
+                    staminaTimerFloat = 1f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+
+                case 2:
+                    staminaTimerFloat = 2f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+
+                case 3:
+                    staminaTimerFloat = 3f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+
+                case 4:
+                    staminaTimerFloat = 4f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+
+                case 5:
+                    staminaTimerFloat = 5f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+
+                case 6:
+                    staminaTimerFloat = 6f;
+                    staminaTimerMax = staminaTimerFloat;
+
+                    break;
+            }
+
+            staminaBool = true;
+        }
+    }
 }
 
 

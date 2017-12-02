@@ -73,8 +73,6 @@ public class Look : MonoBehaviour
                     enemySeek.GetComponent<PathFollowing>().target = rayHit.collider.GetComponentInParent<Transform>(); // If so, Enemy target in Seek script is Transform (Movement script is in the Child) of raycast hit object!
 
                     //Debug.Log("Enemy Seek target = " + enemySeek.GetComponent<PathFollowing>().target);
-
-                    
                 }
             }
 
