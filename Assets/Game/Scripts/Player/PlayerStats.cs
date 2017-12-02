@@ -27,9 +27,6 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        //maxHealth = 100f; // Start of Game, Max Health = 100
-        //curHealth = maxHealth; // At start of game, Current Health must equal Max Health (which was set above to 100)
-
         if (SceneManager.GetActiveScene().name == "Game")
         {
             //Debug.Log("playerSneaky in PlayerStats before = " + playerSneaky);

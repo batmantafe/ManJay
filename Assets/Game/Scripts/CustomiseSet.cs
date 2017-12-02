@@ -34,7 +34,7 @@ public class CustomiseSet : MonoBehaviour
     public Dropdown classDropDown;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         currentScene = SceneManager.GetActiveScene().name;
 
