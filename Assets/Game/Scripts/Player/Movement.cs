@@ -32,10 +32,17 @@ public class Movement : MonoBehaviour
     public float speed = 6.0f;
     public float gravity = 20.0f;
 
+    [Header("Stamina")]
     public float staminaTimerFloat;
     public float staminaTimerMax;
     public float staminaTimerCountdown;
     public bool staminaBool;
+
+    [Header("Shoot")]
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
+    public float bulletSpeed;
+    public float bulletLife;
 
     #endregion
 
@@ -48,6 +55,9 @@ public class Movement : MonoBehaviour
         staminaTimerCountdown = 1;
         staminaBool = false;
 
+        bulletSpeed = 10;
+        bulletLife = 6;
+
         //Debug.Log("PlayerStat's playerStamina = " + gameObject.GetComponent<PlayerStats>().playerStamina);
     }
     #endregion
@@ -56,7 +66,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         GetStaminaStatFunction();
-        
+
         //if our character is grounded
         if (charC.isGrounded)
         {
@@ -89,7 +99,7 @@ public class Movement : MonoBehaviour
         //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
         charC.Move(moveDir * Time.deltaTime);
 
-        
+        Shoot();
     }
     #endregion
 
@@ -98,7 +108,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             staminaTimerFloat = staminaTimerFloat - (staminaTimerCountdown * Time.deltaTime);
-            Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
+            //Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
 
             if (staminaTimerFloat <= 0) // keep from going below Zero
             {
@@ -115,7 +125,7 @@ public class Movement : MonoBehaviour
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             staminaTimerFloat = staminaTimerFloat + (staminaTimerCountdown * Time.deltaTime);
-            Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
+            //Debug.Log("staminaTimerFloat = " + staminaTimerFloat);
 
             if (staminaTimerFloat >= staminaTimerMax) // keep from going above Max Stat value
             {
@@ -169,6 +179,16 @@ public class Movement : MonoBehaviour
             }
 
             staminaBool = true;
+        }
+    }
+
+    void Shoot()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+            Destroy(bullet, bulletLife);
         }
     }
 }
