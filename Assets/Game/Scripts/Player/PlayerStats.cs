@@ -8,13 +8,16 @@ public class PlayerStats : MonoBehaviour
     [Header("Player Stats")]
     public int playerHealthStat;
     public int playerMana, playerStamina, playerSpeedStat, playerSneakyStat, playerShoot;
-    public float playerSneaky, playerHealth;
+    public float playerSneaky, playerHealth, playerHealthMax;
 
     public GameObject customiseManager;
 
     [Header("Values")]
     public float[] speedValues;
     public float[] sneakyValues;
+
+    [Header("Health Bar")]
+    public GUIStyle healthBarRed; // Player > PlayerStats > HealthBarRed > Normal > Background
 
     // Use this for initialization
     void Awake()
@@ -24,6 +27,9 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
+        //maxHealth = 100f; // Start of Game, Max Health = 100
+        //curHealth = maxHealth; // At start of game, Current Health must equal Max Health (which was set above to 100)
+
         if (SceneManager.GetActiveScene().name == "Game")
         {
             //Debug.Log("playerSneaky in PlayerStats before = " + playerSneaky);
@@ -36,10 +42,27 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void OnGUI()
+    {
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            float scrW = Screen.width / 16; // Dividing Screen Width into 16 parts, value of scrW = 1
+            float scrH = Screen.height / 9; // Dividing Screen Height into 9 parts, value of scrH = 1
+
+            GUI.Box(new Rect(6f * scrW, scrH, 4 * scrW, 0.5f * scrH), "HEALTH"); //
+            GUI.Box(new Rect(6f * scrW, scrH, playerHealth * (4 * scrW) / playerHealthMax, 0.5f * scrH), "", healthBarRed); //
+        }
     }
 
     void SetValues()
@@ -67,26 +90,38 @@ public class PlayerStats : MonoBehaviour
         {
             case 1:
                 playerHealth = 1;
+                playerHealthMax = 1;
+
                 break;
 
             case 2:
                 playerHealth = 2;
+                playerHealthMax = 2;
+
                 break;
 
             case 3:
                 playerHealth = 3;
+                playerHealthMax = 3;
+
                 break;
 
             case 4:
                 playerHealth = 4;
+                playerHealthMax = 4;
+
                 break;
 
             case 5:
                 playerHealth = 5;
+                playerHealthMax = 5;
+
                 break;
 
             case 6:
                 playerHealth = 6;
+                playerHealthMax = 6;
+
                 break;
         }
     }
