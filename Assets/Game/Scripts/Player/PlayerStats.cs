@@ -60,8 +60,14 @@ public class PlayerStats : MonoBehaviour
             float scrW = Screen.width / 16; // Dividing Screen Width into 16 parts, value of scrW = 1
             float scrH = Screen.height / 9; // Dividing Screen Height into 9 parts, value of scrH = 1
 
-            GUI.Box(new Rect(6f * scrW, scrH, 4 * scrW, 0.5f * scrH), "HEALTH"); //
-            GUI.Box(new Rect(6f * scrW, scrH, playerHealth * (4 * scrW) / playerHealthMax, 0.5f * scrH), "", healthBarRed); //
+            //GUI.Box(new Rect(6f * scrW, scrH, 4 * scrW, 0.5f * scrH), "HEALTH"); //
+            //GUI.Box(new Rect(6f * scrW, scrH, playerHealth * (4 * scrW) / playerHealthMax, 0.5f * scrH), "", healthBarRed); //
+
+            // Health Bar
+            GUI.Box(new Rect(6f * scrW, 7 * scrH, 4 * scrW, 0.5f * scrH), ""); //
+            GUI.Box(new Rect(6f * scrW, 7 * scrH, playerHealth * (4 * scrW) / playerHealthMax, 0.5f * scrH), "", healthBarRed); //
+
+
         }
     }
 

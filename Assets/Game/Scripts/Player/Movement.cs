@@ -37,6 +37,7 @@ public class Movement : MonoBehaviour
     public float staminaTimerMax;
     public float staminaTimerCountdown;
     public bool staminaBool;
+    public GUIStyle staminaBarOrange;
 
     [Header("Shoot")]
     public GameObject[] bulletPrefabs;
@@ -46,8 +47,9 @@ public class Movement : MonoBehaviour
     public GameObject customiseManager;
 
     [Header("Mana")]
-    public int manaCounter;
+    public int manaCounter, manaMax;
     public bool manaBool;
+    public GUIStyle manaBarBlue;
 
     #endregion
 
@@ -213,10 +215,32 @@ public class Movement : MonoBehaviour
         if (manaBool == false && gameObject.GetComponent<PlayerStats>().playerMana != 0)
         {
             manaCounter = gameObject.GetComponent<PlayerStats>().playerMana;
+            manaMax = manaCounter;
 
             //Debug.Log("manaCounter = " + manaCounter);
 
             manaBool = true;
+        }
+    }
+
+    void OnGUI()
+    {
+        
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            float scrW = Screen.width / 16; // Dividing Screen Width into 16 parts, value of scrW = 1
+            float scrH = Screen.height / 9; // Dividing Screen Height into 9 parts, value of scrH = 1
+
+            //GUI.Box(new Rect(6f * scrW, scrH, 4 * scrW, 0.5f * scrH), "HEALTH"); //
+            //GUI.Box(new Rect(6f * scrW, scrH, playerHealth * (4 * scrW) / playerHealthMax, 0.5f * scrH), "", healthBarRed); //
+
+            // MANA
+            GUI.Box(new Rect(6f * scrW, 8f * scrH, 4 * scrW, 0.5f * scrH), ""); //
+            GUI.Box(new Rect(6f * scrW, 8f * scrH, manaCounter * (4 * scrW) / manaMax, 0.5f * scrH), "", manaBarBlue); //
+
+            // STAMINA
+            GUI.Box(new Rect(6f * scrW, 7.5f * scrH, 4 * scrW, 0.5f * scrH), ""); //
+            GUI.Box(new Rect(6f * scrW, 7.5f * scrH, staminaTimerFloat * (4 * scrW) / staminaTimerMax, 0.5f * scrH), "", staminaBarOrange);
         }
     }
 }
