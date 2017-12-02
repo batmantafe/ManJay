@@ -18,6 +18,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Health Bar")]
     public GUIStyle healthBarRed; // Player > PlayerStats > HealthBarRed > Normal > Background
+    public GameObject painPlane;
 
     // Use this for initialization
     void Awake()
@@ -37,6 +38,8 @@ public class PlayerStats : MonoBehaviour
 
             //Debug.Log("playerSneaky in PlayerStats after = " + playerSneaky);
         }
+
+        
     }
 
     void LateUpdate()
@@ -47,7 +50,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     void OnGUI()
@@ -129,10 +132,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter (Collision other)
+    void OnCollisionStay (Collision other)
     {
         if(other.collider.CompareTag("Enemy"))
         {
+            painPlane.SetActive(true);
+
             playerHealth = playerHealth - (1 * Time.deltaTime);
             Debug.Log("playerHealth = " + playerHealth);
 
@@ -140,6 +145,14 @@ public class PlayerStats : MonoBehaviour
             {
                 SceneManager.LoadScene("Customise");
             }
+        }
+    }
+
+    void OnCollisionExit (Collision other)
+    {
+        if (other.collider.CompareTag("Enemy"))
+        {
+            painPlane.SetActive(false);
         }
     }
 }
