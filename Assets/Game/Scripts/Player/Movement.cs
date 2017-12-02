@@ -44,6 +44,10 @@ public class Movement : MonoBehaviour
     public float bulletSpeed;
     public float bulletLife;
 
+    [Header("Mana")]
+    public int manaCounter;
+    public bool manaBool;
+
     #endregion
 
     #region Start
@@ -55,7 +59,10 @@ public class Movement : MonoBehaviour
         staminaTimerCountdown = 1;
         staminaBool = false;
 
-        bulletSpeed = 10;
+        Debug.Log("playerMana = " + gameObject.GetComponent<PlayerStats>().playerMana);
+        manaBool = false;
+
+        bulletSpeed = 20;
         bulletLife = 6;
 
         //Debug.Log("PlayerStat's playerStamina = " + gameObject.GetComponent<PlayerStats>().playerStamina);
@@ -66,6 +73,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         GetStaminaStatFunction();
+
+        GetManaCount();
 
         //if our character is grounded
         if (charC.isGrounded)
@@ -186,9 +195,27 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
-            Destroy(bullet, bulletLife);
+            if (manaCounter > 0)
+            {
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+                bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+                Destroy(bullet, bulletLife);
+
+                manaCounter = manaCounter - 1;
+                Debug.Log("manaCounter = " + manaCounter);
+            }
+        }
+    }
+
+    void GetManaCount()
+    {
+        if (manaBool == false && gameObject.GetComponent<PlayerStats>().playerMana != 0)
+        {
+            manaCounter = gameObject.GetComponent<PlayerStats>().playerMana;
+
+            Debug.Log("manaCounter = " + manaCounter);
+
+            manaBool = true;
         }
     }
 }

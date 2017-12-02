@@ -43,6 +43,8 @@ public class PlayerStats : MonoBehaviour
     void SetValues()
     {
         playerHealth = customiseManager.GetComponent<CustomiseSet>().healthStat;
+        Debug.Log("playerHealth = " + playerHealth);
+
         playerMana = customiseManager.GetComponent<CustomiseSet>().manaStat;
         playerStamina = customiseManager.GetComponent<CustomiseSet>().staminaStat;
         playerSpeedStat = customiseManager.GetComponent<CustomiseSet>().speedStat;

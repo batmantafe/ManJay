@@ -36,7 +36,7 @@ public class EnemyStats : MonoBehaviour
             else
             {
                 enemyHealth = enemyHealth - 1;
-                Debug.Log("enemyHealth = " + enemyHealth);
+                //Debug.Log("enemyHealth = " + enemyHealth);
             }
         }
     }
@@ -78,8 +78,8 @@ public class EnemyStats : MonoBehaviour
                     break;
             }
 
-            Debug.Log("player.playerHealth = " + player.GetComponent<PlayerStats>().playerHealth);
-            Debug.Log("enemyHealth = " + enemyHealth);
+            //Debug.Log("player.playerHealth = " + player.GetComponent<PlayerStats>().playerHealth);
+            //Debug.Log("enemyHealth = " + enemyHealth);
 
             playerHealthCheck = true;
         }
