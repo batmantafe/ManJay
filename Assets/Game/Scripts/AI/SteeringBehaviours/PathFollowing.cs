@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.AI; // For artificial intelligence
-using GGL; // For drawing
+//using GGL; // For drawing
 
 // Remove SEEK script from GameObject as this has its own SEEK function
 
@@ -63,8 +63,8 @@ public class PathFollowing : SteeringBehaviour
                 Vector3 targetPos = corners[corners.Length - 1];
 
                 // Draw the target
-                GizmosGL.color = new Color(1, 0, 0, 0.3f);
-                GizmosGL.AddSphere(targetPos, targetRadius);
+                /*GizmosGL.color = new Color(1, 0, 0, 0.3f);
+                GizmosGL.AddSphere(targetPos, targetRadius);*/
 
                 // Calculate distance from agent to target
                 float distance = Vector3.Distance(transform.position, targetPos);
@@ -72,17 +72,17 @@ public class PathFollowing : SteeringBehaviour
                 // If the distance is greater than target radius
                 if (distance >= targetRadius)
                 {
-                    GizmosGL.color = Color.cyan;
+                    //GizmosGL.color = Color.cyan;
 
                     // Draw lines between nodes
                     for (int i = 0; i < corners.Length - 1; i++) // Don't draw from last node to nowhere (out-of-bounds of array)
                     {
                         Vector3 nodeA = corners[i];
                         Vector3 nodeB = corners[i + 1];
-                        GizmosGL.AddLine(nodeA, nodeB, 0.1f, 0.1f);
+                        /*GizmosGL.AddLine(nodeA, nodeB, 0.1f, 0.1f);
                         GizmosGL.AddSphere(nodeB, 1f);
 
-                        GizmosGL.color = Color.red;
+                        GizmosGL.color = Color.red;*/
                     }
                 }
             }

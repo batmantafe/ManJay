@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using GGL;
+//using GGL;
 
 public class Wander : SteeringBehaviour
 {
@@ -60,11 +60,11 @@ public class Wander : SteeringBehaviour
         #region GizmosGL
         Vector3 forwardPos = transform.position + transform.forward.normalized * offset;
 
-        Circle c = GizmosGL.AddCircle(forwardPos + Vector3.up * 0.1f, radius, Quaternion.LookRotation(Vector3.down));
+        /*Circle c = GizmosGL.AddCircle(forwardPos + Vector3.up * 0.1f, radius, Quaternion.LookRotation(Vector3.down));
         c.color = new Color(1, 0, 0, 0.5f);
 
         c = GizmosGL.AddCircle(seekPos + Vector3.up * 0.2f, radius * 0.6f, Quaternion.LookRotation(Vector3.down));
-        c.color = new Color(0, 0, 1, 0.5f);
+        c.color = new Color(0, 0, 1, 0.5f);*/
         #endregion
 
         #region Wander
