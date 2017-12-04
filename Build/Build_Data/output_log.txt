@@ -21,7 +21,7 @@ Platform assembly: C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\
 Loading C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
 Platform assembly: C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\Managed\GizmosGL.dll (this message is harmless)
 Loading C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\Managed\GizmosGL.dll into Unity Child Domain
-- Completed reload, in  0.032 seconds
+- Completed reload, in  0.034 seconds
 Platform assembly: C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\duane.reymond1\Source\Repos\ManJay\Build\Build_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
@@ -29,25 +29,9 @@ desktop: 1920x1200 59Hz; virtual: 1920x1200 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.104744 ms
+UnloadTime: 1.240961 ms
 Setting up 4 worker threads for Enlighten.
-  Thread -> id: 31b0 -> priority: 1 
-  Thread -> id: 1bf0 -> priority: 1 
-  Thread -> id: 1bd0 -> priority: 1 
-  Thread -> id: 263c -> priority: 1 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.020026 ms
-
-Unloading 38 unused Assets to reduce memory usage. Loaded Objects now: 604.
-Total: 0.274014 ms (FindLiveObjects: 0.026059 ms CreateObjectMapping: 0.024479 ms MarkObjects: 0.177675 ms  DeleteObjects: 0.045405 ms)
-
-playerHealthStat = 2
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.839021 ms
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 911.
-Total: 0.439054 ms (FindLiveObjects: 0.033166 ms CreateObjectMapping: 0.025664 ms MarkObjects: 0.352981 ms  DeleteObjects: 0.026453 ms)
-
+  Thread -> id: 3088 -> priority: 1 
+  Thread -> id: 200c -> priority: 1 
+  Thread -> id: 6e4 -> priority: 1 
+  Thread -> id: 2c60 -> priority: 1 

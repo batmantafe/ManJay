@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Inventory : MonoBehaviour
+public class PlayerHat : MonoBehaviour
 {
     [Header("Customise Scene Hat")]
     public bool hatToggleBool, hatInGameBool;
@@ -38,6 +38,8 @@ public class Inventory : MonoBehaviour
             customHat.transform.parent = headForHats.transform; // Make customHat child of headForHats;
 
             customHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+
+            customHat.transform.Find("Hat 1 Bottom").gameObject.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material; // Get Bottom of Hat (Child) and change colour
 
             hatToggleBool = true;
 
