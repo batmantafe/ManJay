@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MazeWalls : MonoBehaviour
 {
-    private Vector3 size = new Vector3 (10, 10, 10);
+    //private Vector3 size = new Vector3 (10, 10, 10);
 
     public GameObject[] spawnPrefabs;
     public float spawnRadius = 1f;
