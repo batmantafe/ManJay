@@ -32,6 +32,7 @@ public class CustomiseSet : MonoBehaviour
 
     [Header("Classes")]
     public Dropdown classDropDown;
+    public GameObject player;
 
     // Use this for initialization
     void Awake()
@@ -192,6 +193,13 @@ public class CustomiseSet : MonoBehaviour
         {
             hair.GetComponent<Renderer>().material = mats[hairMatsIndex + 1]; // whatever Mats is, plus One
             hairMatsIndex = hairMatsIndex + 1;
+
+            if (player.GetComponent<PlayerHat>().hatToggleBool == true)
+            {
+                player.GetComponent<PlayerHat>().customHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+                player.GetComponent<PlayerHat>().customHat.transform.Find("Hat 1 Bottom").gameObject.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+            }
+
             return;
         }
 
@@ -199,6 +207,13 @@ public class CustomiseSet : MonoBehaviour
         {
             hair.GetComponent<Renderer>().material = mats[0]; // reset Mats to Zero
             hairMatsIndex = 0;
+
+            if (player.GetComponent<PlayerHat>().hatToggleBool == true)
+            {
+                player.GetComponent<PlayerHat>().customHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+                player.GetComponent<PlayerHat>().customHat.transform.Find("Hat 1 Bottom").gameObject.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+            }
+
             return;
         }
     }
@@ -219,6 +234,12 @@ public class CustomiseSet : MonoBehaviour
         eye.GetComponent<Renderer>().material = mats[eyeMatsIndex];
         beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
         hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
+
+        if (player.GetComponent<PlayerHat>().hatToggleBool == true)
+        {
+            player.GetComponent<PlayerHat>().customHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+            player.GetComponent<PlayerHat>().customHat.transform.Find("Hat 1 Bottom").gameObject.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+        }
     }
     #endregion
 

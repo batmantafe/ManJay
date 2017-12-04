@@ -74,7 +74,8 @@ public class PlayerHat : MonoBehaviour
             customHat.transform.parent = headForHats.transform; // Make customHat child of headForHats;
 
             customHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
-            //bottomHat.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material;
+
+            customHat.transform.Find("Hat 1 Bottom").gameObject.GetComponent<Renderer>().material = hair.GetComponent<Renderer>().material; // Get Bottom of Hat (Child) and change colour
 
             hatInGameBool = true;
             return;
