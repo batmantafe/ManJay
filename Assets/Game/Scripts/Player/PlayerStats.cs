@@ -132,9 +132,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void OnCollisionStay (Collision other)
+    void OnTriggerStay (Collider other)
     {
-        if(other.collider.CompareTag("Enemy"))
+        if(other.attachedRigidbody.CompareTag("Enemy"))
         {
             painPlane.SetActive(true);
 
@@ -148,9 +148,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void OnCollisionExit (Collision other)
+    void OnTriggerExit (Collider other)
     {
-        if (other.collider.CompareTag("Enemy"))
+        if (other.attachedRigidbody.CompareTag("Enemy"))
         {
             painPlane.SetActive(false);
         }
