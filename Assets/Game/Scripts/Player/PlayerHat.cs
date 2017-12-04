@@ -8,22 +8,36 @@ public class PlayerHat : MonoBehaviour
     [Header("Customise Scene Hat")]
     public bool hatToggleBool, hatInGameBool;
     public int customHatCheck;
-    public GameObject hat1Prefab, headForHats, customHat, bottomHat, hair;
+    public GameObject hat1Prefab, headForHats, customHat, hair;
 
     // Use this for initialization
     void Start()
     {
-        hatToggleBool = false;
         hatInGameBool = false;
+
+        customHatCheck = PlayerPrefs.GetInt("CustomHatToggle");
+
+        Debug.Log("customHatCheck = " + customHatCheck);
+
+        if (customHatCheck == 1)
+        {
+            hatToggleBool = true;
+        }
+        else
+        {
+            hatToggleBool = false;
+        }
+
+        Debug.Log("hatToggleBool at Start = " + hatToggleBool);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Game")
-        {
+        //if (SceneManager.GetActiveScene().name == "Game")
+        //{
             PutCustomHatOn();
-        }
+        //}
     }
 
     // For Customise Scene Canvas
@@ -31,6 +45,8 @@ public class PlayerHat : MonoBehaviour
     {
         if (hatToggleBool == false)
         {
+            Debug.Log("hatToggleBool = " + hatToggleBool);
+
             customHat = Instantiate(hat1Prefab, headForHats.transform.position, headForHats.transform.rotation);
 
             customHat.transform.position = new Vector3(headForHats.transform.position.x, headForHats.transform.position.y + .5f, headForHats.transform.position.z + .05f);
@@ -50,6 +66,8 @@ public class PlayerHat : MonoBehaviour
 
         if (hatToggleBool == true)
         {
+            Debug.Log("hatToggleBool = " + hatToggleBool);
+
             Destroy(customHat);
 
             hatToggleBool = false;
@@ -63,7 +81,7 @@ public class PlayerHat : MonoBehaviour
     // For above Function, but for Game Scene
     void PutCustomHatOn()
     {
-        customHatCheck = PlayerPrefs.GetInt("CustomHatToggle");
+        Debug.Log("customHatCheck = " + customHatCheck);
 
         if (customHatCheck == 1 && hatInGameBool == false)
         {
