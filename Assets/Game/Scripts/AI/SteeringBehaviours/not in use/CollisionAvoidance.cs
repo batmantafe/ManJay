@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using GGL;
+//using GGL;
 
 public class CollisionAvoidance : SteeringBehaviour
 {

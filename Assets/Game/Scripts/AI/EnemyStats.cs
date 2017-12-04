@@ -6,14 +6,14 @@ public class EnemyStats : MonoBehaviour
 {
     public int enemyHealth;
 
-    public bool playerHealthCheck;
+    public bool playerShootCheck;
 
     public GameObject player;
 
     // Use this for initialization
     void Start()
     {
-        playerHealthCheck = false;
+        playerShootCheck = false;
 
         enemyHealth = 6;
     }
@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckPlayerHealth();
+        CheckPlayerShoot();
     }
 
     void OnCollisionEnter(Collision other)
@@ -41,11 +41,11 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    void CheckPlayerHealth()
+    void CheckPlayerShoot()
     {
-        if(playerHealthCheck == false)
+        if(playerShootCheck == false)
         {
-            switch (player.GetComponent<PlayerStats>().playerHealthStat)
+            switch (player.GetComponent<PlayerStats>().playerShoot)
             {
                 case 1:
                     enemyHealth = 6;
@@ -81,7 +81,7 @@ public class EnemyStats : MonoBehaviour
             //Debug.Log("player.playerHealthStat = " + player.GetComponent<PlayerStats>().playerHealthStat);
             //Debug.Log("enemyHealth = " + enemyHealth);
 
-            playerHealthCheck = true;
+            playerShootCheck = true;
         }
     }
 }

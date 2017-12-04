@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.AI;
-using GGL;
+//using GGL;
 
 [RequireComponent(typeof(Camera))]
 
@@ -41,7 +41,7 @@ public class AIAgentPatrolSelector : MonoBehaviour
 
         foreach (var p in patrolPoints)
         {
-            GizmosGL.AddSphere(p.position, 1f);
+            //GizmosGL.AddSphere(p.position, 1f);
         }
     }
 
