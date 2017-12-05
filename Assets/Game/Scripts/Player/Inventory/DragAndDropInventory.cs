@@ -188,11 +188,11 @@ public class DragAndDropInventory : MonoBehaviour
             inventory.Add(new Item());
         }
 
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
 
         playerOpensLootbox = false;
     }
@@ -211,11 +211,14 @@ public class DragAndDropInventory : MonoBehaviour
     #region OnGUI
   void OnGUI()
     {
+        
+
         Event e = Event.current;
         #region Draw Inventory if showInv is true
         if(showInv)
         {
             inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Your Stuff"));
+            
         }
         #endregion
         #region Draw ToolTip
@@ -264,7 +267,7 @@ public class DragAndDropInventory : MonoBehaviour
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            mainCam.enabled = false;
+            //mainCam.enabled = false;
             playerCam.enabled = true;
             playerMove.enabled = true;
             playerStat.enabled = true;
@@ -279,7 +282,7 @@ public class DragAndDropInventory : MonoBehaviour
             Time.timeScale = 0.5f; // half-speed when in Inventory
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            mainCam.enabled = false;
+            //mainCam.enabled = false;
             playerCam.enabled = false;
             playerMove.enabled = false;
             playerStat.enabled = false;

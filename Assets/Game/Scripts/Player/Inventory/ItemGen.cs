@@ -153,39 +153,19 @@ public static class ItemGen
                 break;
             #endregion
 
-            #region Crafting 300-399
-            case 300:
-                name = "Ingots";
-                value = 15;
-                description = "Make stuff with this";
-                icon = "Ingots";
-                mesh = "Ingots";
-                type = ItemType.Crafting;
-                break;
-            case 301:
-                name = "Gem";
-                value = 15;
-                description = "Shiny!";
-                icon = "Gem";
-                mesh = "Gem";
-                type = ItemType.Crafting;
-                break;
-
-            #endregion
-
-            #region Quest 400-499
-
-            #endregion
-
-            #region Ingredients 600-699
-
-            #endregion
-
-            #region Potions 700-799
-
-            #endregion
-
             #region Scrolls 800-899
+
+            #endregion
+
+            #region Mana 900-999
+            case 900:
+                name = "Mana";
+                value = 5;
+                description = "From Heaven.";
+                icon = "Mana";
+                mesh = "Mana";
+                type = ItemType.Mana;
+                break;
 
             #endregion
 

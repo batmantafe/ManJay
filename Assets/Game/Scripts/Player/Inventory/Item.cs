@@ -117,7 +117,8 @@ public enum ItemType
     Money,
     Ingredients,
     Potions,
-    Scrolls
+    Scrolls,
+    Mana
 }
 
 

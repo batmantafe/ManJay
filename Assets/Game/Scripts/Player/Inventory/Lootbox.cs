@@ -179,21 +179,23 @@ public class Lootbox : MonoBehaviour
     {
         scrW = Screen.width / 16;
         scrH = Screen.height / 9;
-        mainCam = Camera.main.GetComponent<MouseLook>();
+        /*mainCam = Camera.main.GetComponent<MouseLook>();
         playerCam = GetComponent<MouseLook>();
         playerMove = GetComponent<Movement>();
-        playerStat = GetComponent<PlayerStats>();
-        inventorySize = new Rect(scrW,scrH,6*scrW,4.5f*scrH);
+        playerStat = GetComponent<PlayerStats>();*/
+
+        inventorySize = new Rect(9 * scrW,scrH,6*scrW,4.5f*scrH);
+
         for (int i = 0; i < (slotX * slotY); i++)
         {
             inventory.Add(new Item());
         }
 
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
-        AddItem(1);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
+        AddItem(900);
 
         playerAtLootbox = false;
 
@@ -214,11 +216,14 @@ public class Lootbox : MonoBehaviour
     #region OnGUI
   void OnGUI()
     {
+        
+
         Event e = Event.current;
         #region Draw Inventory if showInv is true
         if(showInv)
         {
             inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Someone Else's Stuff"));
+            
         }
         #endregion
         #region Draw ToolTip
@@ -263,7 +268,7 @@ public class Lootbox : MonoBehaviour
     {
         if (showInv)
         {
-            //showInv = false;
+            showInv = false;
             /*Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -272,13 +277,13 @@ public class Lootbox : MonoBehaviour
             playerMove.enabled = true;
             playerStat.enabled = true;*/
 
-            //Debug.Log("Lootbox showInv = " + showInv);
+            Debug.Log("Lootbox showInv = " + showInv);
 
             return (false);
         }
         else
         {
-            //showInv = true;
+            showInv = true;
             /*Time.timeScale = 0.5f; // half-speed when in Inventory
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
@@ -287,7 +292,7 @@ public class Lootbox : MonoBehaviour
             playerMove.enabled = false;
             playerStat.enabled = false;*/
 
-            //Debug.Log("Lootbox showInv = " + showInv);
+            Debug.Log("Lootbox showInv = " + showInv);
 
             return (true);
         }
@@ -308,6 +313,7 @@ public class Lootbox : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         playerAtLootbox = false;
+        showInv = false;
 
         //Debug.Log("playerAtLootbox = " + playerAtLootbox);
     }
