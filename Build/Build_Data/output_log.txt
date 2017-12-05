@@ -19,53 +19,149 @@ Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\U
 Loading C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.054 seconds
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.572478 ms
+UnloadTime: 1.785641 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: dc4 -> priority: 1 
+  Thread -> id: 628 -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 6.949634 ms
+UnloadTime: 6.482259 ms
 
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 732.
-Total: 0.418995 ms (FindLiveObjects: 0.102916 ms CreateObjectMapping: 0.027561 ms MarkObjects: 0.241017 ms  DeleteObjects: 0.046620 ms)
+Unloading 40 unused Assets to reduce memory usage. Loaded Objects now: 741.
+Total: 0.365631 ms (FindLiveObjects: 0.041635 ms CreateObjectMapping: 0.028148 ms MarkObjects: 0.244536 ms  DeleteObjects: 0.050138 ms)
 
-Added Item: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Added Item: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Added Item: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Added Item: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Added Item: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Dragging: Apple
+Added Item: Mana
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Place: Apple :Into: 19
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dragging: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dropped: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dragging: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dropped: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dragging: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dropped: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dragging: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Dropped: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = False
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Added Item: Mana
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = True
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player showInv = False
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.760876 ms
+UnloadTime: 0.864965 ms
 
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 910.
-Total: 0.619256 ms (FindLiveObjects: 0.052777 ms CreateObjectMapping: 0.028148 ms MarkObjects: 0.495816 ms  DeleteObjects: 0.041635 ms)
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 913.
+Total: 0.743870 ms (FindLiveObjects: 0.107607 ms CreateObjectMapping: 0.075354 ms MarkObjects: 0.513701 ms  DeleteObjects: 0.045447 ms)
 

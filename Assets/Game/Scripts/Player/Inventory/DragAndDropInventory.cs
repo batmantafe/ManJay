@@ -93,7 +93,8 @@ public class DragAndDropInventory : MonoBehaviour
     void InventoryDrag(int windowID)
     {
         GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "");
-        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
+        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "PRO-TIP: Use the Right-Mouse Button on an Item to Consume it!");
+
         showToolTip = false;
         #region Nested For Loop
         Event e = Event.current;
@@ -104,6 +105,27 @@ public class DragAndDropInventory : MonoBehaviour
             {
                 Rect slotLocation = new Rect(scrW*0.125f + x*(scrW*0.75f),scrH*0.75f + y *(scrH*0.65f),0.75f*scrW,0.65f*scrH);
                 GUI.Box(slotLocation,"");
+
+                #region Use Item
+                if (e.button == 1 && e.type == EventType.MouseUp && slotLocation.Contains(e.mousePosition))
+                {
+                    draggedItem = inventory[i];
+
+                    if (draggedItem.Type == ItemType.Mana)
+                    {
+                        if (gameObject.GetComponent<Movement>().manaCounter < gameObject.GetComponent<Movement>().manaMax)
+                        {
+                            gameObject.GetComponent<Movement>().manaCounter = gameObject.GetComponent<Movement>().manaCounter + 1;
+
+                            inventory.Remove(draggedItem);
+
+                            Debug.Log("Use: " + draggedItem.Name);
+                        }
+                    }
+
+                }
+                #endregion
+
                 #region Pickup Item
                 if (e.button == 0 && e.type == EventType.MouseDown && slotLocation.Contains(e.mousePosition) && !dragging && inventory[i].Name != null && !Input.GetKey(KeyCode.LeftShift))
                 {
@@ -114,6 +136,7 @@ public class DragAndDropInventory : MonoBehaviour
                     Debug.Log("Dragging: "+ draggedItem.Name);
                 }
                 #endregion
+
                 #region Swap Item
                 if (e.button == 0 && e.type == EventType.MouseUp && slotLocation.Contains(e.mousePosition) && dragging && inventory[i].Name != null)
                 {
@@ -126,6 +149,7 @@ public class DragAndDropInventory : MonoBehaviour
 
                 }
                 #endregion
+
                 #region Place Item
                 if (e.button == 0 && e.type == EventType.MouseUp && slotLocation.Contains(e.mousePosition) && dragging && inventory[i].Name == null)
                 {
@@ -137,6 +161,7 @@ public class DragAndDropInventory : MonoBehaviour
 
                 }
                 #endregion
+
                 #region Return Item
                 if (e.button == 0 && e.type == EventType.MouseUp && i == ((slotX*slotY)-1) && dragging)
                 {
@@ -148,6 +173,7 @@ public class DragAndDropInventory : MonoBehaviour
 
                 }
                 #endregion
+
                 #region Draw Item Icon
                 if(inventory[i].Name != null)
                 {
@@ -173,6 +199,7 @@ public class DragAndDropInventory : MonoBehaviour
         #endregion
     }
     #endregion
+
     #region Start
     void Start()
     {
@@ -218,7 +245,10 @@ public class DragAndDropInventory : MonoBehaviour
         if(showInv)
         {
             inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Your Stuff"));
+
+            // To Use Item
             
+
         }
         #endregion
         #region Draw ToolTip
