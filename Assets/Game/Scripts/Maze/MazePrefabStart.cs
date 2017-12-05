@@ -19,7 +19,7 @@ public class MazePrefabStart : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody.name == "Start Zone")
+        if (other.gameObject.name == "Start Zone")
         {
             Destroy(gameObject);
         }

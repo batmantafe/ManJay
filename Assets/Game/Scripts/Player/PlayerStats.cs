@@ -74,7 +74,7 @@ public class PlayerStats : MonoBehaviour
     void SetValues()
     {
         playerHealthStat = customiseManager.GetComponent<CustomiseSet>().healthStat;
-        Debug.Log("playerHealthStat = " + playerHealthStat);
+        //Debug.Log("playerHealthStat = " + playerHealthStat);
 
         playerMana = customiseManager.GetComponent<CustomiseSet>().manaStat;
         playerStamina = customiseManager.GetComponent<CustomiseSet>().staminaStat;
@@ -134,12 +134,12 @@ public class PlayerStats : MonoBehaviour
 
     void OnTriggerStay (Collider other)
     {
-        if(other.attachedRigidbody.CompareTag("Enemy"))
+        if(other.gameObject.CompareTag("Enemy"))
         {
             painPlane.SetActive(true);
 
             playerHealth = playerHealth - (1 * Time.deltaTime);
-            Debug.Log("playerHealth = " + playerHealth);
+            //Debug.Log("playerHealth = " + playerHealth);
 
             if (playerHealth <= 0)
             {
@@ -150,9 +150,33 @@ public class PlayerStats : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
-        if (other.attachedRigidbody.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             painPlane.SetActive(false);
         }
     }
+
+    /*void OnCollisionEnter (Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            painPlane.SetActive(true);
+
+            playerHealth = playerHealth - 1;
+            //Debug.Log("playerHealth = " + playerHealth);
+
+            if (playerHealth <= 0)
+            {
+                SceneManager.LoadScene("Customise");
+            }
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            painPlane.SetActive(false);
+        }
+    }*/
 }

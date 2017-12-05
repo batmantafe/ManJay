@@ -15,12 +15,7 @@ public class PlayerHat : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //if (SceneManager.GetActiveScene().name == "Customise")
-        //{
-            hatInGameBool = false;
-        //}
-
-
+        hatInGameBool = false;
 
         customHatCheck = 0;
 
@@ -29,7 +24,11 @@ public class PlayerHat : MonoBehaviour
         if (customHatCheck == 1)
         {
             hatToggleBool = true;
-            hatToggleUI.isOn = true;
+
+            if (SceneManager.GetActiveScene().name == "Customise")
+            {
+                hatToggleUI.isOn = true;
+            }
 
             customHat = Instantiate(hat1Prefab, headForHats.transform.position, headForHats.transform.rotation);
 
@@ -113,7 +112,7 @@ public class PlayerHat : MonoBehaviour
     // For above Function, but for Game Scene
     void PutCustomHatOn()
     {
-        Debug.Log("customHatCheck = " + customHatCheck);
+        //Debug.Log("customHatCheck = " + customHatCheck);
 
         if (customHatCheck == 1 && hatInGameBool == false)
         {

@@ -26,7 +26,7 @@ public class EnemyStats : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Bullet"))
         {
             if (enemyHealth == 1)
             {
