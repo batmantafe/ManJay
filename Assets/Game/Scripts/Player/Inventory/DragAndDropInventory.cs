@@ -293,5 +293,20 @@ public class DragAndDropInventory : MonoBehaviour
         }
     }
     #endregion
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Mana"))
+        {
+            /*if (manaCounter < manaMax)
+            {
+                manaCounter = manaCounter + 1;
+                Destroy(other.gameObject);
+            }*/
+
+            AddItem(900);
+            Destroy(other.gameObject);
+        }
+    }
 }
 

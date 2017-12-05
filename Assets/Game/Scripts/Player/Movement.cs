@@ -56,8 +56,8 @@ public class Movement : MonoBehaviour
     #region Start
     void Start()
     {
-        
-        
+
+
         //charc is on this game object we need to get the character controller that is attached to it
         charC = this.GetComponent<CharacterController>();
 
@@ -229,7 +229,7 @@ public class Movement : MonoBehaviour
 
     void OnGUI()
     {
-        
+
         if (SceneManager.GetActiveScene().name == "Game")
         {
             float scrW = Screen.width / 16; // Dividing Screen Width into 16 parts, value of scrW = 1
@@ -247,14 +247,7 @@ public class Movement : MonoBehaviour
             GUI.Box(new Rect(6f * scrW, 7.5f * scrH, staminaTimerFloat * (4 * scrW) / staminaTimerMax, 0.5f * scrH), "", staminaBarOrange);
         }
     }
+
+    
+
 }
-
-
-
-
-
-
-
-
-
-
