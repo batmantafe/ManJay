@@ -197,7 +197,7 @@ public class Lootbox : MonoBehaviour
 
         playerAtLootbox = false;
 
-        Debug.Log("playerAtLootbox Start = " + playerAtLootbox);
+        //Debug.Log("playerAtLootbox Start = " + playerAtLootbox);
     }
     #endregion
     #region Update
@@ -218,7 +218,7 @@ public class Lootbox : MonoBehaviour
         #region Draw Inventory if showInv is true
         if(showInv)
         {
-            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"A Magical Lootbox!"));
+            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Someone Else's Stuff"));
         }
         #endregion
         #region Draw ToolTip
@@ -272,7 +272,7 @@ public class Lootbox : MonoBehaviour
             playerMove.enabled = true;
             playerStat.enabled = true;*/
 
-            Debug.Log("Lootbox showInv = " + showInv);
+            //Debug.Log("Lootbox showInv = " + showInv);
 
             return (false);
         }
@@ -287,7 +287,7 @@ public class Lootbox : MonoBehaviour
             playerMove.enabled = false;
             playerStat.enabled = false;*/
 
-            Debug.Log("Lootbox showInv = " + showInv);
+            //Debug.Log("Lootbox showInv = " + showInv);
 
             return (true);
         }
@@ -300,7 +300,7 @@ public class Lootbox : MonoBehaviour
         {
             playerAtLootbox = true;
 
-            Debug.Log("playerAtLootbox = " + playerAtLootbox);
+            //Debug.Log("playerAtLootbox = " + playerAtLootbox);
 
         }
     }
@@ -309,7 +309,7 @@ public class Lootbox : MonoBehaviour
     {
         playerAtLootbox = false;
 
-        Debug.Log("playerAtLootbox = " + playerAtLootbox);
+        //Debug.Log("playerAtLootbox = " + playerAtLootbox);
     }
 }
 

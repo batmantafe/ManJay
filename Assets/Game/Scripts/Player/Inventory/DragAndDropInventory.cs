@@ -200,9 +200,11 @@ public class DragAndDropInventory : MonoBehaviour
     #region Update
     void Update()
     {
-        if(/*Input.GetKeyDown(KeyCode.Tab) ||*/ playerOpensLootbox == true)
+        if(Input.GetKeyDown(KeyCode.Tab) || playerOpensLootbox == true)
         {
             ToggleInv();
+
+            playerOpensLootbox = false;
         }  
     }
     #endregion
@@ -258,7 +260,7 @@ public class DragAndDropInventory : MonoBehaviour
     {
         if (showInv)
         {
-            //showInv = false;
+            showInv = false;
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -273,7 +275,7 @@ public class DragAndDropInventory : MonoBehaviour
         }
         else
         {
-            //showInv = true;
+            showInv = true;
             Time.timeScale = 0.5f; // half-speed when in Inventory
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
