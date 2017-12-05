@@ -59,7 +59,9 @@ public class CustomiseSet : MonoBehaviour
         {
             classDropDown.value = 0; // set Default class before Load
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
+
         ClassCheck();
 
         Load();
@@ -70,6 +72,11 @@ public class CustomiseSet : MonoBehaviour
         Debug.Log("speedStat = " + speedStat);
         Debug.Log("sneakyStat = " + sneakyStat);
         Debug.Log("shootStat = " + shootStat);*/
+    }
+
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
