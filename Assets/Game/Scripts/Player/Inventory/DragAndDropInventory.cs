@@ -25,6 +25,8 @@ public class DragAndDropInventory : MonoBehaviour
     [Header("References and Locations")]
     public Movement playerMove;
     public MouseLook mainCam, playerCam;
+    public PlayerStats playerStat;
+
     #endregion
     #region Clamp to screen
     private Rect ClampToScreen(Rect r)
@@ -87,8 +89,8 @@ public class DragAndDropInventory : MonoBehaviour
     #region Drag Inventory
     void InventoryDrag(int windowID)
     {
-        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "Banner");
-        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "Gold n EXP");
+        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "");
+        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
         showToolTip = false;
         #region Nested For Loop
         Event e = Event.current;
@@ -176,16 +178,18 @@ public class DragAndDropInventory : MonoBehaviour
         mainCam = Camera.main.GetComponent<MouseLook>();
         playerCam = GetComponent<MouseLook>();
         playerMove = GetComponent<Movement>();
+        playerStat = GetComponent<PlayerStats>();
         inventorySize = new Rect(scrW,scrH,6*scrW,4.5f*scrH);
         for (int i = 0; i < (slotX * slotY); i++)
         {
             inventory.Add(new Item());
         }
-        AddItem(0);
-        AddItem(0);
+
         AddItem(1);
-        AddItem(102);
-        AddItem(206);
+        AddItem(1);
+        AddItem(1);
+        AddItem(1);
+        AddItem(1);
     }
     #endregion
     #region Update
@@ -204,7 +208,7 @@ public class DragAndDropInventory : MonoBehaviour
         #region Draw Inventory if showInv is true
         if(showInv)
         {
-            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"My Inventory"));
+            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Your Stuff"));
         }
         #endregion
         #region Draw ToolTip
@@ -253,9 +257,10 @@ public class DragAndDropInventory : MonoBehaviour
             Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            mainCam.enabled = true;
+            mainCam.enabled = false;
             playerCam.enabled = true;
             playerMove.enabled = true;
+            playerStat.enabled = true;
             return (false);
         }
         else
@@ -267,6 +272,7 @@ public class DragAndDropInventory : MonoBehaviour
             mainCam.enabled = false;
             playerCam.enabled = false;
             playerMove.enabled = false;
+            playerStat.enabled = false;
             return (true);
         }
     }
