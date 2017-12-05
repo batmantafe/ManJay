@@ -52,7 +52,12 @@ public class PlayerHat : MonoBehaviour
         else if (customHatCheck == 0)
         {
             hatToggleBool = false;
-            hatToggleUI.isOn = false;
+
+
+            if (SceneManager.GetActiveScene().name == "Customise")
+            {
+                hatToggleUI.isOn = false;
+            }
         }
 
         //Debug.Log("hatToggleBool at Start = " + hatToggleBool);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDropInventory : MonoBehaviour
+public class Lootbox : MonoBehaviour
 {
     #region Variables
     [Header("Inventory")]
@@ -27,8 +27,9 @@ public class DragAndDropInventory : MonoBehaviour
     public MouseLook mainCam, playerCam;
     public PlayerStats playerStat;
 
-    [Header("Lootbox Interaction")]
-    public bool playerOpensLootbox;
+    [Header("Lootbox Stuff")]
+    public bool playerAtLootbox;
+    public GameObject player;
 
     #endregion
     #region Clamp to screen
@@ -194,15 +195,19 @@ public class DragAndDropInventory : MonoBehaviour
         AddItem(1);
         AddItem(1);
 
-        playerOpensLootbox = false;
+        playerAtLootbox = false;
+
+        Debug.Log("playerAtLootbox Start = " + playerAtLootbox);
     }
     #endregion
     #region Update
     void Update()
     {
-        if(/*Input.GetKeyDown(KeyCode.Tab) ||*/ playerOpensLootbox == true)
+        if(Input.GetKeyDown(KeyCode.E) && playerAtLootbox == true)
         {
             ToggleInv();
+
+            player.GetComponent<DragAndDropInventory>().playerOpensLootbox = true;
         }  
     }
     #endregion
@@ -213,7 +218,7 @@ public class DragAndDropInventory : MonoBehaviour
         #region Draw Inventory if showInv is true
         if(showInv)
         {
-            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"Your Stuff"));
+            inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag,"A Magical Lootbox!"));
         }
         #endregion
         #region Draw ToolTip
@@ -259,34 +264,52 @@ public class DragAndDropInventory : MonoBehaviour
         if (showInv)
         {
             //showInv = false;
-            Time.timeScale = 1;
+            /*Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             mainCam.enabled = false;
             playerCam.enabled = true;
             playerMove.enabled = true;
-            playerStat.enabled = true;
+            playerStat.enabled = true;*/
 
-            Debug.Log("Player showInv = " + showInv);
+            Debug.Log("Lootbox showInv = " + showInv);
 
             return (false);
         }
         else
         {
             //showInv = true;
-            Time.timeScale = 0.5f; // half-speed when in Inventory
+            /*Time.timeScale = 0.5f; // half-speed when in Inventory
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             mainCam.enabled = false;
             playerCam.enabled = false;
             playerMove.enabled = false;
-            playerStat.enabled = false;
+            playerStat.enabled = false;*/
 
-            Debug.Log("Player showInv = " + showInv);
+            Debug.Log("Lootbox showInv = " + showInv);
 
             return (true);
         }
     }
     #endregion
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Player")
+        {
+            playerAtLootbox = true;
+
+            Debug.Log("playerAtLootbox = " + playerAtLootbox);
+
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        playerAtLootbox = false;
+
+        Debug.Log("playerAtLootbox = " + playerAtLootbox);
+    }
 }
 

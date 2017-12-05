@@ -19,25 +19,21 @@ Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\U
 Loading C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.049 seconds
+- Completed reload, in  0.046 seconds
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Duane\Source\Repos\ManJay\Build\Build_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.452556 ms
+UnloadTime: 1.572478 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2aac -> priority: 1 
+  Thread -> id: dc4 -> priority: 1 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.237318 ms
+UnloadTime: 6.949634 ms
 
-Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 733.
-Total: 0.379118 ms (FindLiveObjects: 0.051311 ms CreateObjectMapping: 0.035185 ms MarkObjects: 0.245708 ms  DeleteObjects: 0.046033 ms)
-
-Added Item: Apple
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+Unloading 39 unused Assets to reduce memory usage. Loaded Objects now: 732.
+Total: 0.418995 ms (FindLiveObjects: 0.102916 ms CreateObjectMapping: 0.027561 ms MarkObjects: 0.241017 ms  DeleteObjects: 0.046620 ms)
 
 Added Item: Apple
  
@@ -55,22 +51,21 @@ Added Item: Apple
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at PlayerHat.Start () [0x00000] in <filename unknown>:0 
+Added Item: Apple
  
-(Filename:  Line: -1)
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Dragging: Apple
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Place: Apple :Into: 12
+Place: Apple :Into: 19
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.763808 ms
+UnloadTime: 0.760876 ms
 
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 912.
-Total: 0.579966 ms (FindLiveObjects: 0.046326 ms CreateObjectMapping: 0.027854 ms MarkObjects: 0.459751 ms  DeleteObjects: 0.045154 ms)
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 910.
+Total: 0.619256 ms (FindLiveObjects: 0.052777 ms CreateObjectMapping: 0.028148 ms MarkObjects: 0.495816 ms  DeleteObjects: 0.041635 ms)
 

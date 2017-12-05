@@ -56,6 +56,8 @@ public class Movement : MonoBehaviour
     #region Start
     void Start()
     {
+        
+        
         //charc is on this game object we need to get the character controller that is attached to it
         charC = this.GetComponent<CharacterController>();
 
@@ -131,6 +133,8 @@ public class Movement : MonoBehaviour
             if (staminaTimerFloat > 0) // to allow normal speed if stamina above 0
             {
                 speed = gameObject.GetComponent<PlayerStats>().playerStamina;
+
+
             }
         }
 

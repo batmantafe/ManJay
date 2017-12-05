@@ -70,6 +70,7 @@
      <Compile Include="Assets\Game\Scripts\Player\Inventory\DragAndDropInventory.cs" />
      <Compile Include="Assets\Game\Scripts\Player\Inventory\Item.cs" />
      <Compile Include="Assets\Game\Scripts\Player\Inventory\ItemGen.cs" />
+     <Compile Include="Assets\Game\Scripts\Player\Inventory\Lootbox.cs" />
      <Compile Include="Assets\Game\Scripts\Player\MouseLook.cs" />
      <Compile Include="Assets\Game\Scripts\Player\Movement.cs" />
      <Compile Include="Assets\Game\Scripts\Player\PlayerHat.cs" />
