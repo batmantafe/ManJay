@@ -34,6 +34,10 @@ public class CustomiseSet : MonoBehaviour
     public Dropdown classDropDown;
     public GameObject player;
 
+    [Header("Character Name")]
+    public string charName;
+    public Text yourName;
+
     // Use this for initialization
     void Awake()
     {
@@ -1181,6 +1185,8 @@ public class CustomiseSet : MonoBehaviour
         PlayerPrefs.SetInt("Sneaky Stat", sneakyStat);
         PlayerPrefs.SetInt("Shoot Stat", shootStat);
 
+        PlayerPrefs.SetString("CharacterName", charName);
+
         SceneManager.LoadScene("Game");
     }
 
@@ -1201,6 +1207,15 @@ public class CustomiseSet : MonoBehaviour
         beard.GetComponent<Renderer>().material = mats[beardMatsIndex];
         hair.GetComponent<Renderer>().material = mats[hairMatsIndex];
 
+        // Check if there's a Character Name already saved from a previous play-session
+        if (PlayerPrefs.GetString("CharacterName") == "")
+        {
+            charName = "Duane";
+            PlayerPrefs.SetString("CharacterName", charName);
+        }
+
+        charName = PlayerPrefs.GetString("CharacterName");
+
         if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
         {
             classDropDown.value = PlayerPrefs.GetInt("Class Dropdown");
@@ -1214,6 +1229,40 @@ public class CustomiseSet : MonoBehaviour
             speedStat = PlayerPrefs.GetInt("Speed Stat");
             sneakyStat = PlayerPrefs.GetInt("Sneaky Stat");
             shootStat = PlayerPrefs.GetInt("Shoot Stat");
+
+            DisplayYourName();
         }
+    }
+
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("Customise");
+    }
+
+    void OnGUI()
+    {
+        if (SceneManager.GetActiveScene().name == "Customise")
+        {
+            float scrW = Screen.width / 16;
+            float scrH = Screen.height / 9;
+            //int i = 0;
+
+            //name of our character equals a GUI TextField that holds our character name and limit of characters
+            //move down the screen with the int using ++ each grouping of GUI elements are moved using this
+            charName = GUI.TextField(new Rect(
+                //0.25f * scrW,
+                9.5f * scrW,
+                //scrH + i * (0.5f * scrH),
+                scrH + 7f * (0.5f * scrH),
+                2f * scrW, 0.5f * scrW),
+                charName,
+                12);
+        }
+    }
+
+    public void DisplayYourName()
+    {
+        yourName.text = "You are " + charName + ".";
     }
 }

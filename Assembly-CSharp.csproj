@@ -65,7 +65,6 @@
      <Compile Include="Assets\Game\Scripts\Camera\CameraBounds.cs" />
      <Compile Include="Assets\Game\Scripts\Camera\MoveWithinBounds.cs" />
      <Compile Include="Assets\Game\Scripts\CustomiseSet.cs" />
-     <Compile Include="Assets\Game\Scripts\ItemInstance.cs" />
      <Compile Include="Assets\Game\Scripts\Maze\MazePrefabStart.cs" />
      <Compile Include="Assets\Game\Scripts\Maze\MazeWalls.cs" />
      <Compile Include="Assets\Game\Scripts\Player\Inventory\DragAndDropInventory.cs" />
