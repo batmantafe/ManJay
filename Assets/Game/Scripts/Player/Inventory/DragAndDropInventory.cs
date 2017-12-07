@@ -98,13 +98,13 @@ public class DragAndDropInventory : MonoBehaviour
     {
         if (playerAtLootbox == false)
         {
-            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Use it!");
+            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "Right-Click on an Item to Use it!" + "\n" + "PROTIP: Fire a few shots before attempting to use Mana!");
             GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
         }
 
         if (playerAtLootbox == true)
         {
-            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "You're at a Lootbox!" + "\n" + "PROTIP: Right-Click on an Item to Put It In the Lootbox!");
+            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "You're at a Lootbox!" + "\n" + "Right-Click on an Item to Put It In the Lootbox!");
             GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
         }
 

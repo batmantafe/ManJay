@@ -96,7 +96,7 @@ public class Lootbox : MonoBehaviour
     #region Drag Inventory
     void InventoryDrag(int windowID)
     {
-        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Take it!");
+        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "Right-Click on an Item to Take it!");
         GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
         showToolTip = false;
         #region Nested For Loop
