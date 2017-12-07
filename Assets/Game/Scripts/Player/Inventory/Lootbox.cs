@@ -30,6 +30,7 @@ public class Lootbox : MonoBehaviour
     [Header("Lootbox Stuff")]
     public bool playerAtLootbox;
     public GameObject player;
+    public GameObject canvas;
 
     #endregion
 
@@ -296,6 +297,7 @@ public class Lootbox : MonoBehaviour
             playerCam.enabled = true;
             playerMove.enabled = true;
             playerStat.enabled = true;
+            canvas.SetActive(true);
 
             Debug.Log("Lootbox showInv = " + showInv);
 
@@ -311,6 +313,7 @@ public class Lootbox : MonoBehaviour
             playerCam.enabled = false;
             playerMove.enabled = false;
             playerStat.enabled = false;
+            canvas.SetActive(false);
 
             Debug.Log("Lootbox showInv = " + showInv);
 

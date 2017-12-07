@@ -30,6 +30,7 @@ public class DragAndDropInventory : MonoBehaviour
     [Header("Lootbox Interaction")]
     public bool playerUsingLootbox, playerAtLootbox;
     public GameObject lootbox;
+    public GameObject canvas;
 
     #endregion
 
@@ -333,6 +334,7 @@ public class DragAndDropInventory : MonoBehaviour
             playerCam.enabled = true;
             playerMove.enabled = true;
             playerStat.enabled = true;
+            canvas.SetActive(true);
 
             Debug.Log("Player showInv = " + showInv);
 
@@ -348,7 +350,7 @@ public class DragAndDropInventory : MonoBehaviour
             playerCam.enabled = false;
             playerMove.enabled = false;
             playerStat.enabled = false;
-
+            canvas.SetActive(false);
 
 
             Debug.Log("Player showInv = " + showInv);
