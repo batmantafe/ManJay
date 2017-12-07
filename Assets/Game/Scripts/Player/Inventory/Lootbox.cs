@@ -94,7 +94,7 @@ public class Lootbox : MonoBehaviour
     void InventoryDrag(int windowID)
     {
         GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "");
-        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
+        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Take it!");
         showToolTip = false;
         #region Nested For Loop
         Event e = Event.current;
@@ -179,10 +179,10 @@ public class Lootbox : MonoBehaviour
     {
         scrW = Screen.width / 16;
         scrH = Screen.height / 9;
-        /*mainCam = Camera.main.GetComponent<MouseLook>();
-        playerCam = GetComponent<MouseLook>();
-        playerMove = GetComponent<Movement>();
-        playerStat = GetComponent<PlayerStats>();*/
+        //mainCam = Camera.main.GetComponent<MouseLook>();
+        playerCam = player.GetComponent<MouseLook>();
+        playerMove = player.GetComponent<Movement>();
+        playerStat = player.GetComponent<PlayerStats>();
 
         inventorySize = new Rect(9 * scrW,scrH,6*scrW,4.5f*scrH);
 
@@ -205,11 +205,9 @@ public class Lootbox : MonoBehaviour
     #region Update
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && playerAtLootbox == true)
+        if(Input.GetKeyDown(KeyCode.E) && playerAtLootbox == true && player.GetComponent<DragAndDropInventory>().showInv == false)
         {
             ToggleInv();
-
-            player.GetComponent<DragAndDropInventory>().playerOpensLootbox = true;
         }  
     }
     #endregion
@@ -269,13 +267,13 @@ public class Lootbox : MonoBehaviour
         if (showInv)
         {
             showInv = false;
-            /*Time.timeScale = 1;
+            Time.timeScale = 1;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            mainCam.enabled = false;
+            //mainCam.enabled = false;
             playerCam.enabled = true;
             playerMove.enabled = true;
-            playerStat.enabled = true;*/
+            playerStat.enabled = true;
 
             Debug.Log("Lootbox showInv = " + showInv);
 
@@ -284,13 +282,13 @@ public class Lootbox : MonoBehaviour
         else
         {
             showInv = true;
-            /*Time.timeScale = 0.5f; // half-speed when in Inventory
+            Time.timeScale = 0.5f; // half-speed when in Inventory
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            mainCam.enabled = false;
+            //mainCam.enabled = false;
             playerCam.enabled = false;
             playerMove.enabled = false;
-            playerStat.enabled = false;*/
+            playerStat.enabled = false;
 
             Debug.Log("Lootbox showInv = " + showInv);
 

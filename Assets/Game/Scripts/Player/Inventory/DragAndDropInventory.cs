@@ -28,7 +28,7 @@ public class DragAndDropInventory : MonoBehaviour
     public PlayerStats playerStat;
 
     [Header("Lootbox Interaction")]
-    public bool playerOpensLootbox;
+    public bool playerUsingLootbox;
 
     #endregion
     #region Clamp to screen
@@ -221,18 +221,23 @@ public class DragAndDropInventory : MonoBehaviour
         AddItem(900);
         AddItem(900);
 
-        playerOpensLootbox = false;
+        playerUsingLootbox = false;
     }
     #endregion
     #region Update
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab) || playerOpensLootbox == true)
+        if (Input.GetKeyDown(KeyCode.Tab) && playerUsingLootbox == false)
+        {
+            ToggleInv();
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.E) && playerAtLootbox == true && playerOpensLootbox == false)
         {
             ToggleInv();
 
-            playerOpensLootbox = false;
-        }  
+            playerOpensLootbox = true;
+        }*/
     }
     #endregion
     #region OnGUI
@@ -244,9 +249,10 @@ public class DragAndDropInventory : MonoBehaviour
         #region Draw Inventory if showInv is true
         if(showInv)
         {
+            //if ()
             inventorySize = ClampToScreen(GUI.Window(1,inventorySize,InventoryDrag, "Your Stuff"));
 
-            // To Use Item
+            
             
 
         }
@@ -317,6 +323,8 @@ public class DragAndDropInventory : MonoBehaviour
             playerMove.enabled = false;
             playerStat.enabled = false;
 
+
+
             Debug.Log("Player showInv = " + showInv);
 
             return (true);
@@ -324,7 +332,7 @@ public class DragAndDropInventory : MonoBehaviour
     }
     #endregion
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Mana"))
         {
@@ -336,6 +344,27 @@ public class DragAndDropInventory : MonoBehaviour
 
             AddItem(900);
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Lootbox"))
+        {
+            if(other.gameObject.GetComponent<Lootbox>().showInv == false)
+            {
+                playerUsingLootbox = false;
+            }
+
+            if (other.gameObject.GetComponent<Lootbox>().showInv == true)
+            {
+                playerUsingLootbox = true;
+            }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Lootbox"))
+        {
+            playerUsingLootbox = false;
         }
     }
 }

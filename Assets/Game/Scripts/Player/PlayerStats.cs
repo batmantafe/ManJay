@@ -83,8 +83,8 @@ public class PlayerStats : MonoBehaviour
         playerShoot = customiseManager.GetComponent<CustomiseSet>().shootStat;
 
         gameObject.GetComponent<Movement>().speed = speedValues[playerSpeedStat - 1];
-        //Debug.Log("playerSpeedStat = " + playerSpeedStat);
-        //Debug.Log("Player Movement Speed = " + gameObject.GetComponent<Movement>().speed);
+        Debug.Log("playerSpeedStat = " + playerSpeedStat);
+        Debug.Log("Player Movement Speed = " + gameObject.GetComponent<Movement>().speed);
 
         playerSneaky = sneakyValues[playerSneakyStat - 1];
         //Debug.Log("playerSneaky = " + playerSneaky);

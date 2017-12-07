@@ -132,7 +132,7 @@ public class Movement : MonoBehaviour
 
             if (staminaTimerFloat > 0) // to allow normal speed if stamina above 0
             {
-                speed = gameObject.GetComponent<PlayerStats>().playerStamina;
+                speed = gameObject.GetComponent<PlayerStats>().playerSpeedStat;
 
 
             }
