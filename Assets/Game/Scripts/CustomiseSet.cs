@@ -33,6 +33,7 @@ public class CustomiseSet : MonoBehaviour
     [Header("Classes")]
     public Dropdown classDropDown;
     public GameObject player;
+    public string className;
 
     [Header("Character Name")]
     public string charName;
@@ -608,7 +609,9 @@ public class CustomiseSet : MonoBehaviour
             return;
         }
     }
+    #endregion
 
+    #region Classes
     public void ClassCheck()
     {
         if (SceneManager.GetActiveScene().name == "Customise") // Only do this in the Customise scene
@@ -679,6 +682,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
 
+                    className = "a Scout.";
+
                     break;
 
                 case 1:
@@ -744,6 +749,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[3].SetActive(false);
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
+
+                    className = "a Bard.";
 
                     break;
 
@@ -811,6 +818,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
 
+                    className = "a Duelist.";
+
                     break;
 
                 case 3:
@@ -876,6 +885,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[3].SetActive(false);
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
+
+                    className = "a Thief.";
 
                     break;
 
@@ -943,6 +954,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
 
+                    className = "an Assassin.";
+
                     break;
 
                 case 5:
@@ -1008,6 +1021,8 @@ public class CustomiseSet : MonoBehaviour
                     shootBars[3].SetActive(false);
                     shootBars[4].SetActive(false);
                     shootBars[5].SetActive(false);
+
+                    className = "a Sharpshooter.";
 
                     break;
             }
@@ -1186,6 +1201,8 @@ public class CustomiseSet : MonoBehaviour
         PlayerPrefs.SetInt("Shoot Stat", shootStat);
 
         PlayerPrefs.SetString("CharacterName", charName);
+        PlayerPrefs.SetString("ClassName", className);
+
 
         SceneManager.LoadScene("Game");
     }
@@ -1230,6 +1247,8 @@ public class CustomiseSet : MonoBehaviour
             sneakyStat = PlayerPrefs.GetInt("Sneaky Stat");
             shootStat = PlayerPrefs.GetInt("Shoot Stat");
 
+            className = PlayerPrefs.GetString("ClassName");
+
             DisplayYourName();
         }
     }
@@ -1263,6 +1282,6 @@ public class CustomiseSet : MonoBehaviour
 
     public void DisplayYourName()
     {
-        yourName.text = "You are " + charName + ".";
+        yourName.text = "You are " + charName + ", " + className;
     }
 }
