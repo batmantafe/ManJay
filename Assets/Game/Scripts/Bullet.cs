@@ -19,7 +19,10 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("MazeWallPrefab") || other.gameObject.name == "Wall" || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("MazeWallPrefab") ||
+            other.gameObject.name == "Wall" ||
+            other.gameObject.CompareTag("Enemy") ||
+            other.gameObject.CompareTag("Lootbox"))
         {
             Destroy(gameObject);
         }
