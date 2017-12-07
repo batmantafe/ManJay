@@ -28,9 +28,11 @@ public class DragAndDropInventory : MonoBehaviour
     public PlayerStats playerStat;
 
     [Header("Lootbox Interaction")]
-    public bool playerUsingLootbox;
+    public bool playerUsingLootbox, playerAtLootbox;
+    public GameObject lootbox;
 
     #endregion
+
     #region Clamp to screen
     private Rect ClampToScreen(Rect r)
     {
@@ -89,11 +91,21 @@ public class DragAndDropInventory : MonoBehaviour
         }
       #endregion
     #endregion
+
     #region Drag Inventory
     void InventoryDrag(int windowID)
     {
-        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "");
-        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Use it!");
+        if (playerAtLootbox == false)
+        {
+            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Use it!");
+            GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
+        }
+
+        if (playerAtLootbox == true)
+        {
+            GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "You're at a Lootbox!" + "\n" + "PROTIP: Right-Click on an Item to Put It In the Lootbox!");
+            GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
+        }
 
         showToolTip = false;
         #region Nested For Loop
@@ -113,13 +125,25 @@ public class DragAndDropInventory : MonoBehaviour
 
                     if (draggedItem.Type == ItemType.Mana)
                     {
-                        if (gameObject.GetComponent<Movement>().manaCounter < gameObject.GetComponent<Movement>().manaMax)
+                        if (playerAtLootbox == false)
                         {
-                            gameObject.GetComponent<Movement>().manaCounter = gameObject.GetComponent<Movement>().manaCounter + 1;
+                            if (gameObject.GetComponent<Movement>().manaCounter < gameObject.GetComponent<Movement>().manaMax)
+                            {
+                                gameObject.GetComponent<Movement>().manaCounter = gameObject.GetComponent<Movement>().manaCounter + 1;
+
+                                inventory.Remove(draggedItem);
+
+                                Debug.Log("Use: " + draggedItem.Name);
+                            }
+                        }
+
+                        if (playerAtLootbox == true)
+                        {
+                            lootbox.GetComponent<Lootbox>().AddItem(900);
 
                             inventory.Remove(draggedItem);
 
-                            Debug.Log("Use: " + draggedItem.Name);
+                            Debug.Log("Moved: " + draggedItem.Name);
                         }
                     }
 
@@ -222,8 +246,10 @@ public class DragAndDropInventory : MonoBehaviour
         AddItem(900);
 
         playerUsingLootbox = false;
+        playerAtLootbox = false;
     }
     #endregion
+
     #region Update
     void Update()
     {
@@ -348,7 +374,9 @@ public class DragAndDropInventory : MonoBehaviour
 
         if (other.gameObject.CompareTag("Lootbox"))
         {
-            if(other.gameObject.GetComponent<Lootbox>().showInv == false)
+            playerAtLootbox = true;
+
+            if (other.gameObject.GetComponent<Lootbox>().showInv == false)
             {
                 playerUsingLootbox = false;
             }
@@ -365,6 +393,7 @@ public class DragAndDropInventory : MonoBehaviour
         if (other.gameObject.CompareTag("Lootbox"))
         {
             playerUsingLootbox = false;
+            playerAtLootbox = false;
         }
     }
 }

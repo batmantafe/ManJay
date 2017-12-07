@@ -32,6 +32,7 @@ public class Lootbox : MonoBehaviour
     public GameObject player;
 
     #endregion
+
     #region Clamp to screen
     private Rect ClampToScreen(Rect r)
     {
@@ -90,11 +91,12 @@ public class Lootbox : MonoBehaviour
     }
     #endregion
     #endregion
+
     #region Drag Inventory
     void InventoryDrag(int windowID)
     {
-        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "");
-        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Take it!");
+        GUI.Box(new Rect(0, 0.25f * scrH, 6 * scrW, 0.5f * scrH), "PROTIP: Right-Click on an Item to Take it!");
+        GUI.Box(new Rect(0, 4.25f * scrH, 6 * scrW, 0.5f * scrH), "");
         showToolTip = false;
         #region Nested For Loop
         Event e = Event.current;
@@ -192,6 +194,7 @@ public class Lootbox : MonoBehaviour
         #endregion
     }
     #endregion
+
     #region Start
     void Start()
     {
@@ -220,6 +223,7 @@ public class Lootbox : MonoBehaviour
         //Debug.Log("playerAtLootbox Start = " + playerAtLootbox);
     }
     #endregion
+
     #region Update
     void Update()
     {
